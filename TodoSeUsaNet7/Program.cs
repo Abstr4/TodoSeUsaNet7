@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using TodoSeUsaNet7.Areas.Identity.Data;
-using TodoSeUsaNet7.Data;
+using TodoSeUsaNet7.Models;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("TodoSeUsaNet7ContextConnection") ?? throw new InvalidOperationException("Connection string 'TodoSeUsaNet7ContextConnection' not found.");
 
