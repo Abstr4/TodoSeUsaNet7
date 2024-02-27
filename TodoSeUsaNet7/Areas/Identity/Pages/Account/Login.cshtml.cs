@@ -14,7 +14,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using TodoSeUsaNet7.Areas.Identity.Data;
+using TodoSeUsaNet7.Models;
+
 
 namespace TodoSeUsaNet7.Areas.Identity.Pages.Account
 {
