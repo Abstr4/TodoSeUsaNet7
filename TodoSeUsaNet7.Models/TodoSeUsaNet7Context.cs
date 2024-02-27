@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using TodoSeUsaNet7.Areas.Identity.Data;
 
-namespace TodoSeUsaNet7.Data;
+namespace TodoSeUsaNet7.Models;
 
 public class TodoSeUsaNet7Context : IdentityDbContext<TodoSeUsaNet7User>
 {
