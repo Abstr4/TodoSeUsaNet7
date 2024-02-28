@@ -22,9 +22,5 @@ namespace TodoSeUsaNet7.Models
         public virtual Client? Client { get; set; }
 
         public virtual ICollection<Product>? Products { get; set; }
-        public virtual ICollection<Bill>? Bills { get; set; }
-
-
-
     }
 }

@@ -34,7 +34,5 @@ namespace TodoSeUsaNet7.Models
 
         // Relations
         public virtual ICollection<Bill>? Bills { get; set; }
-
-
     }
 }

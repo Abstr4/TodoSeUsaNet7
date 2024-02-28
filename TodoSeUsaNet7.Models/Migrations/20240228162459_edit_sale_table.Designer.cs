@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TodoSeUsaNet7.Models.Data;
 
@@ -11,9 +12,11 @@ using TodoSeUsaNet7.Models.Data;
 namespace TodoSeUsaNet7.Migrations
 {
     [DbContext(typeof(TodoSeUsaNet7Context))]
-    partial class TodoSeUsaNet7ContextModelSnapshot : ModelSnapshot
+    [Migration("20240228162459_edit_sale_table")]
+    partial class edit_sale_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,7 +162,100 @@ namespace TodoSeUsaNet7.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("TodoSeUsaNet7.Areas.Identity.Data.TodoSeUsaNet7User", b =>
+            modelBuilder.Entity("TodoSeUsaNet7.Models.Bill", b =>
+                {
+                    b.Property<int>("BillId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BillId"));
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Closed")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ProductsSold")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalAmountPerProducts")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TotalAmountSold")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalProducts")
+                        .HasColumnType("int");
+
+                    b.HasKey("BillId");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("Bill", (string)null);
+                });
+
+            modelBuilder.Entity("TodoSeUsaNet7.Models.Client", b =>
+                {
+                    b.Property<int>("ClienteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClienteId"));
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<int?>("ProductsSold")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalAmountPerProducts")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TotalAmountSold")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalBills")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalProducts")
+                        .HasColumnType("int");
+
+                    b.HasKey("ClienteId");
+
+                    b.ToTable("Client", (string)null);
+                });
+
+            modelBuilder.Entity("TodoSeUsaNet7.Models.Data.TodoSeUsaNet7User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -232,6 +328,111 @@ namespace TodoSeUsaNet7.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("TodoSeUsaNet7.Models.Product", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("BillId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Condicion")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<int>("CostoReacondicionamiento")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descripcion")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<bool>("Devolver")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Devuelto")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<int>("Precio")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Reacondicionado")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("SaleId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Sold")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("ProductId");
+
+                    b.HasIndex("BillId");
+
+                    b.HasIndex("SaleId");
+
+                    b.ToTable("Product", (string)null);
+                });
+
+            modelBuilder.Entity("TodoSeUsaNet7.Models.Sale", b =>
+                {
+                    b.Property<int>("SaleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SaleId"));
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Closed")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("DateOfIssue")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Debe")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Detail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Entrega")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalProducts")
+                        .HasColumnType("int");
+
+                    b.HasKey("SaleId");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("Sale", (string)null);
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -243,7 +444,7 @@ namespace TodoSeUsaNet7.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("TodoSeUsaNet7.Areas.Identity.Data.TodoSeUsaNet7User", null)
+                    b.HasOne("TodoSeUsaNet7.Models.Data.TodoSeUsaNet7User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -252,7 +453,7 @@ namespace TodoSeUsaNet7.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("TodoSeUsaNet7.Areas.Identity.Data.TodoSeUsaNet7User", null)
+                    b.HasOne("TodoSeUsaNet7.Models.Data.TodoSeUsaNet7User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -267,7 +468,7 @@ namespace TodoSeUsaNet7.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TodoSeUsaNet7.Areas.Identity.Data.TodoSeUsaNet7User", null)
+                    b.HasOne("TodoSeUsaNet7.Models.Data.TodoSeUsaNet7User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -276,11 +477,63 @@ namespace TodoSeUsaNet7.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("TodoSeUsaNet7.Areas.Identity.Data.TodoSeUsaNet7User", null)
+                    b.HasOne("TodoSeUsaNet7.Models.Data.TodoSeUsaNet7User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TodoSeUsaNet7.Models.Bill", b =>
+                {
+                    b.HasOne("TodoSeUsaNet7.Models.Client", "Client")
+                        .WithMany("Bills")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+                });
+
+            modelBuilder.Entity("TodoSeUsaNet7.Models.Product", b =>
+                {
+                    b.HasOne("TodoSeUsaNet7.Models.Bill", "Bill")
+                        .WithMany("Product")
+                        .HasForeignKey("BillId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TodoSeUsaNet7.Models.Sale", null)
+                        .WithMany("Products")
+                        .HasForeignKey("SaleId");
+
+                    b.Navigation("Bill");
+                });
+
+            modelBuilder.Entity("TodoSeUsaNet7.Models.Sale", b =>
+                {
+                    b.HasOne("TodoSeUsaNet7.Models.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+                });
+
+            modelBuilder.Entity("TodoSeUsaNet7.Models.Bill", b =>
+                {
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("TodoSeUsaNet7.Models.Client", b =>
+                {
+                    b.Navigation("Bills");
+                });
+
+            modelBuilder.Entity("TodoSeUsaNet7.Models.Sale", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }
