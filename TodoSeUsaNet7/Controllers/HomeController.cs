@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using TodoSeUsaNet7.Models;
+using TodoSeUsaNet7.Models.ViewModel;
+using TodoSeUsaNet7.Models.Data;
 
 namespace TodoSeUsaNet7.Controllers
 {

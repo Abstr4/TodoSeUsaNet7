@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
-namespace TodoSeUsaNet7.Models;
+namespace TodoSeUsaNet7.Models.Data;
 
 // Add profile data for application users by adding properties to the TodoSeUsaNet7User class
 public class TodoSeUsaNet7User : IdentityUser

@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using TodoSeUsaNet7.Models;
+using TodoSeUsaNet7.Models.Data;
 
 namespace TodoSeUsaNet7.Areas.Identity.Pages.Account
 {
