@@ -1,0 +1,88 @@
+﻿ @model IEnumerable<TodoSeUsa.Models.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/clientes-index.css" type="text/css" />
+</head>
+
+
+
+<div class="positon-relative d-flex justify-content-center mb-4">
+    <a class="btn btn-secondary position-absolute align-self-center start-0" asp-controller="Home" asp-action="Index"><i class="fas fa-arrow-left"></i></a>
+    <h1>Clientes</h1>
+</div>
+
+<a class="btn btn-primary" asp-action="Create">Crear Nuevo</a>
+
+<div class="d-flex justify-content-between mb-3 mt-4">
+    <form class="d-inline-flex" asp-action="Index" method="get">
+        <div class="input-group">
+            <div class="form-outline">
+                <input id="searchBarInput" type="text" name="search" class="form-control" placeholder="Buscar cliente" value="" />
+            </div>
+            <button id="searchBarButton" type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </form>
+    <a class="btn btn-secondary" asp-action="Index"><i class="fas fa-spinner"></i></a>
+</div>
+
+<hr />
+
+<table class="table flex-column">
+    <thead>
+        <tr>
+            <th>
+                Código
+            </th>
+            <th>
+                Nombre y Apellido
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="vertical-bar-left">
+                    @Html.DisplayFor(modelItem => item.ClienteId)
+                </td>
+                <td class="vertical-bar-left vertical-bar-right">
+                    @Html.DisplayFor(modelItem => item.Nombre) @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+                <!-- button group for mobile -->
+                <td class="dropdown"> 
+                    <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-cog"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item action-button" asp-action="Edit" asp-route-id="@item.ClienteId">Editar</a>
+                        <a class="dropdown-item action-button" asp-action="Details" asp-route-id="@item.ClienteId">Detalles</a>
+                        <a class="dropdown-item action-button" asp-action="ClienteFacturas" asp-route-id="@item.ClienteId">Facturas</a>
+                        <a class="dropdown-item action-button" asp-action="ClienteProductos" asp-route-id="@item.ClienteId">Productos</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-end pe-2">
+    <a class="btn btn-primary text-center" asp-action="Create"><i class="fas fa-plus"></i></a>
+</div>
+<hr />
+
+<a class="btn btn-secondary align-self-center" asp-controller="Home" asp-action="Index"><i class="fas fa-arrow-left"></i> Volver al menú</a>
+
+
+
+@section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+}

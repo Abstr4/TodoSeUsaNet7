@@ -1,0 +1,96 @@
+﻿@model TodoSeUsa.Models.Models.Cliente
+
+@{
+    string Title = $"Editar información del cliente - {Model.Nombre} {Model.Apellido} Cod. {Model.ClienteId} ";
+    ViewData["Title"] = Title;
+    bool isActive = Model.Active;
+    string switchWord = isActive ? "baja" : "alta";
+
+}
+
+<partial name="_BackButtonWTitle" model="Title" />
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ClienteId" />
+            <div class="form-group mb-3">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" placeholder="Nombre" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Apellido" class="control-label"></label>
+                <input asp-for="Apellido" class="form-control" placeholder="Apellido" />
+                <span asp-validation-for="Apellido" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Telefono" class="control-label"></label>
+                <input asp-for="Telefono" class="form-control" placeholder="Telefono" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Direccion" class="control-label"></label>
+                <input asp-for="Direccion" class="form-control" placeholder="Direccion" />
+                <span asp-validation-for="Direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" placeholder="Correo electrónico" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div id="SaveChangesButtons" class="d-flex justify-content-between">
+
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Guardar cambios</button>
+                </div>
+                <!-- Button trigger modal -->
+                <div id="modalButton">
+                            <button type="button" class="btn btn-@(isActive ? "danger" : "success")" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Dar de @switchWord <i class="fa fa-arrow-@(isActive ? "down" : "up")"></i>
+                            </button>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">
+                                <text>Dar de @switchWord</text>
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            @{
+                                @: ¿Confirma dar de @switchWord al usuario @Model.Nombre @Model.Apellido Cod. @Model.ClienteId?
+                             }
+                        </div>
+                        <div class="modal-footer d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-@(isActive ? "danger" : "success")" asp-action="SwitchActive" asp-route-id="@Model.ClienteId">Dar de @switchWord</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+
+
+
+
+    </div>
+</div>
+
+<hr />
+<div class="mt-2">
+    <a class="btn btn-secondary" asp-action="Index"><i class="fas fa-arrow-left"></i> Volver a la lista de clientes</a>
+</div>  
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

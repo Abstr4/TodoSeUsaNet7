@@ -1,0 +1,113 @@
+﻿@model TodoSeUsa.Models.Models.Producto
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/producto-create.css" type="text/css" />
+</head>
+
+<div class="positon-relative d-flex justify-content-center mb-4">
+    <a class="btn btn-secondary position-absolute align-self-center start-0" asp-action="Index"><i class="fas fa-arrow-left"></i></a>
+    <h1>Crear producto</h1>
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <!--FacturaId -->
+            <div class="form-group">
+                <label asp-for="FacturaId" class="control-label">Cod. Factura</label>
+                <select asp-for="FacturaId" class="form-control" asp-items="ViewBag.FacturaId"></select>
+            </div>
+            <!-- Tipo -->
+            <div class="form-group">
+                <label asp-for="Tipo" class="control-label"></label>
+                <input asp-for="Tipo" class="form-control" placeholder="Ej: Remera, pantalon, jean" />
+                <span asp-validation-for="Tipo" class="text-danger"></span>
+            </div>
+             <!-- Descripcion -->
+            <div class="form-group">
+                <label asp-for="Descripcion">Descripcion</label>
+                <textarea class="form-control" id="description-text-area" rows="3" placeholder="Ej: color azul con flores"></textarea>
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            @* Estado *@
+            <div class="form-group">
+                <label asp-for="Estado" class="control-label"></label>
+                <input asp-for="Estado" class="form-control" placeholder="Ej: Nuevo, usado, gastado" />
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+            @* Precio *@
+            <div class="form-group">
+                <label asp-for="Precio" class="control-label"></label>
+                <input asp-for="Precio" class="form-control" min="1" oninput="validity.valid||(value='');" placeholder="0"/>
+                <span asp-validation-for="Precio" class="text-danger"></span>
+            </div>
+            <!--Reacondicionado switch-->
+            <div class="form-group">
+                <div class="form-check form-switch">
+                    <label class="control-label d-flex align-items-center gap-2" >
+                        @Html.CheckBoxFor(m => m.Reacondicionado, htmlAttributes: new {@onclick="validate(this.id, 'cr-form-group', 'reacondicionado-input')", @class ="form-check-input", @role ="switch", @name="checkbox"}) Reacondicionado
+                    </label>
+                </div>
+                <span asp-validation-for="Reacondicionado" class="text-danger"></span>
+            </div>
+            @* Costo reacondicionamiento *@
+            <div id="cr-form-group" class="form-group ps-3" hidden="">
+                <label asp-for="CostoReacondicionamiento" class="control-label">Costo Reacondicionamiento</label>
+                <input id="reacondicionado-input" asp-for="CostoReacondicionamiento" class="form-control" min="0" oninput="validity.valid||(value=0);" placeholder="0" type="number"/>
+                <span asp-validation-for="CostoReacondicionamiento" class="text-danger"></span>
+            </div>
+            <!-- Devolver switch -->
+            <div class="form-group">
+                <div class="form-check form-switch">
+                    <label class="control-label d-flex align-items-center gap-2" >
+                    @Html.CheckBoxFor(m => m.Devolver, htmlAttributes: new {@onclick="validate(this.id, 'devuelto-form-group', 'devuelto-switch')", @class ="form-check-input", @role ="switch"}) A devolver
+                    </label>
+                </div>
+                <span asp-validation-for="Devolver" class="text-danger"></span>
+            </div>
+            <!-- Devuelto switch -->
+            <div id="devuelto-form-group" class="form-group ps-3" hidden="">
+                <div class="form-check form-switch">
+                    <label class="control-label d-flex align-items-center gap-2" >
+                        @Html.CheckBoxFor(m => m.Devuelto, htmlAttributes: new {@id="devuelto-switch", @class ="form-check-input", @role ="switch"}) Devuelto
+                    </label>
+                </div>
+                <span asp-validation-for="Devuelto" class="text-danger"></span>
+            </div>
+            <!-- Vendido switch -->
+            <div id="vendido-form-group" class="form-group">
+                <div class="form-check form-switch">
+                    <label class="control-label d-flex align-items-center gap-2">
+                        @Html.CheckBoxFor(m => m.Sold, htmlAttributes: new {@id="vendido-switch", @class ="form-check-input", @role ="switch"}) Vendido
+                    </label>
+                </div>
+                <span asp-validation-for="Sold" class="text-danger"></span>
+            </div>
+
+            @* create button *@
+            <div class="form-group d-flex flex-row-reverse">
+                <input type="submit" value="Crear producto" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<hr />
+
+<div class="d-flex mt-2">
+    <a class="btn btn-secondary" asp-action="Index"><i class="fa fa-arrow-left"></i> Volver a la lista</a>
+</div>
+
+<script src="~/js/checkbox-checked.js"></script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
