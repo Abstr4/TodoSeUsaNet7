@@ -5,7 +5,7 @@ namespace TodoSeUsaNet7.Models
     public class Client
     {
         [Key]
-        public int ClienteId { get; set; }
+        public int ClientId { get; set; }
 
         [Required]
         [MaxLength(64)]
@@ -28,9 +28,9 @@ namespace TodoSeUsaNet7.Models
         public bool Active { get; set; }
         public int TotalBills { get; set; }
         public int TotalProducts { get; set; }
-        public int? ProductsSold { get; set; }
+        public int ProductsSold { get; set; }
         public int TotalAmountPerProducts { get; set; }
-        public int? TotalAmountSold { get; set; }
+        public int TotalAmountSold { get; set; }
 
         // Relations
         public virtual ICollection<Bill>? Bills { get; set; }

@@ -1,4 +1,4 @@
-namespace TodoSeUsaNet7.Models.ViewModel
+namespace TodoSeUsaNet7.Models.ViewModels
 {
     public class ErrorViewModel
     {

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TodoSeUsaNet7.Models.Data;
 
@@ -11,9 +12,11 @@ using TodoSeUsaNet7.Models.Data;
 namespace TodoSeUsaNet7.Migrations
 {
     [DbContext(typeof(TodoSeUsaNet7Context))]
-    partial class TodoSeUsaNet7ContextModelSnapshot : ModelSnapshot
+    [Migration("20240228205818_rename_clienteId_to_clientId")]
+    partial class rename_clienteId_to_clientId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

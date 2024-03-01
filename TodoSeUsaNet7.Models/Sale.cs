@@ -6,16 +6,24 @@ namespace TodoSeUsaNet7.Models
     {
         [Key]
         public int SaleId { get; set; }
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
 
         [Display(Name = "Date of issue")]
         public DateTime DateOfIssue { get; set; } = DateTime.Now;
         public string Detail { get; set; }
+        [Required]
         public int Amount { get; set; }
-        public int Entrega { get; set; }
-        public int Debe { get; set; }
+        [Required]
+        public int Paid { get; set; }
+        [Required]
+        public int Owes { get; set; }
+        [Required]
         public int TotalProducts { get; set; }
         public bool Closed { get; set; }
-        public bool Active { get; set; } = true;
+        public bool Active { get; set; }
 
         // Navigation properties
         public int ClientId { get; set; }

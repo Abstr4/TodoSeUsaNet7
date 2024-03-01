@@ -8,32 +8,32 @@ namespace TodoSeUsaNet7.Models
         [Key]
         public int ProductId { get; set; }
 
-        [Required(ErrorMessage = "Obligatory field")]
+        [Required]
         [MaxLength(100, ErrorMessage = "Max. Length of {0}")]
         public string Type { get; set; }
 
         [MaxLength(500, ErrorMessage = "Max. Length of {0}")]
-        public string? Descripcion { get; set; } 
+        public string? Description { get; set; } 
 
         [MaxLength(500)]
-        public string? Condicion { get; set; } 
+        public string? Condition { get; set; } 
 
-        [Required(ErrorMessage = "Obligatory field")]
+        [Required]
         [MaxLength(25, ErrorMessage = "Max. Length of {0}")]
-        public string Estado { get; set; } 
+        public string State { get; set; } 
 
-        [Required(ErrorMessage = "Obligatory field")]
+        [Required]
         [Range(0, Int32.MaxValue, ErrorMessage = "Price must be greater than 0")]
-        public int Precio { get; set; }
+        public int Price { get; set; }
 
-        public bool Reacondicionado { get; set; } = false;
+        public bool Reaconditioned { get; set; }
 
-        [Required(ErrorMessage = "Obligatory field")]
+        [Required]
         [Display(Name = "Costo de reacondicionamiento")]
         [Range(0, Int32.MaxValue, ErrorMessage = "Cost must be greater than 0")]
-        public int CostoReacondicionamiento { get; set; }
-        public bool Devolver { get; set; } 
-        public bool Devuelto { get; set; } 
+        public int ReaconditioningCost { get; set; }
+        public bool MustReturn { get; set; } 
+        public bool Returned { get; set; } 
         public bool Sold { get; set; }
         public bool Active { get; set; }
 
