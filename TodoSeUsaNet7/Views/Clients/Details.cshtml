@@ -1,0 +1,94 @@
+﻿@model TodoSeUsaNet7.Models.Client
+
+@{
+    string Title = $"Detalles del cliente - {Model.FirstName} {Model.LastName} Cod. {Model.ClientId}";
+    ViewData["Title"] = Title;
+}
+<head>
+    <link href="~/css/clientes-details.css" rel="stylesheet" type="text/css" />
+</head>
+
+<partial name="_BackButtonWTitle" model="Title" />
+
+<div class="d-flex justify-content-between">
+
+    <div class="d-flex gap-3">
+        <a class="btn button btn-outline-dark d-flex justify-content-center align-items-center gap-2" asp-controller="Bills" asp-action="Index">
+                <i class="fa-2x fas fa-receipt"></i><h4 class="mb-0">Facturas</h4>
+        </a>
+        <a id="products-link" class="btn button btn-outline-dark d-flex justify-content-center align-items-center gap-2" onmouseover="chbg('products-path', 'white')" onmouseout="chbg('products-path', 'black')"  asp-controller="Products" asp-action="Index">
+                <svg id="products-svg" width="2em" height="2em" viewBox="0 0 640 512" ><path id="products-path" d="M211.8 0c7.8 0 14.3 5.7 16.7 13.2C240.8 51.9 277.1 80 320 80s79.2-28.1 91.5-66.8C413.9 5.7 420.4 0 428.2 0h12.6c22.5 0 44.2 7.9 61.5 22.3L628.5 127.4c6.6 5.5 10.7 13.5 11.4 22.1s-2.1 17.1-7.8 23.6l-56 64c-11.4 13.1-31.2 14.6-44.6 3.5L480 197.7V448c0 35.3-28.7 64-64 64H224c-35.3 0-64-28.7-64-64V197.7l-51.5 42.9c-13.3 11.1-33.1 9.6-44.6-3.5l-56-64c-5.7-6.5-8.5-15-7.8-23.6s4.8-16.6 11.4-22.1L137.7 22.3C155 7.9 176.7 0 199.2 0h12.6z" /></svg>
+            <h4 class="mb-0">Productos</h4>
+        </a>
+    </div>
+    <div class="d-flex flex-row-reverse align-items-center">
+        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.ClientId">Editar</a>
+    </div>
+</div>
+
+
+<table class="table flex-column">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Nombre</th>
+            <td>@Html.DisplayFor(model => model.FirstName)</td>
+        </tr>
+        <tr>
+            <th>Apellido</th>
+            <td>@Html.DisplayFor(model => model.LastName)</td>
+        </tr>
+        <tr>
+            <th>Telefono</th>
+            <td>@Html.DisplayFor(model => model.PhoneNumber)</td>
+        </tr>
+        <tr >
+            <th>Direccion</th>
+            <td>@Html.DisplayFor(model => model.Address)</td>
+        </tr>
+        <tr >
+            <th>Email</th>
+            <td>@Html.DisplayFor(model => model.Email)</td>
+        </tr>
+        <tr >
+            <th>Cant. productos</th>
+            <td>@Html.DisplayFor(model => model.TotalProducts)</td>
+        </tr>
+        <tr >
+            <th>Monto total por productos</th>
+                <td>@Html.DisplayFor(model => model.TotalAmountPerProducts)</td>
+        </tr>
+        <tr>
+            <th>Cant. productos vendidos</th>
+            <td>@Html.DisplayFor(model => model.ProductsSold)</td>
+        </tr>
+        <tr>
+            <th>Monto. por ventas</th>
+            <td>@Html.DisplayFor(model => model.TotalAmountSold)</td>
+        </tr>
+        <tr>
+            <th>Cant. facturas</th>
+                <td>@Html.DisplayFor(model => model.TotalBills)</td>
+        </tr>
+        <tr>
+            <th>Activo</th>
+            <td> 
+                @if (Model != null) {
+                    @(Model.Active ? "Cliente de alta" : "Cliente de baja")
+                }
+                </td>
+        </tr>
+    </tbody>
+</table>
+
+<hr />
+<div class="mt-2">
+    <a class="btn btn-secondary" asp-action="Index"><i class="fas fa-arrow-left"></i> Volver a la lista de clientes</a>
+</div>
+
+<script src="~/js/changecolor.js"></script>

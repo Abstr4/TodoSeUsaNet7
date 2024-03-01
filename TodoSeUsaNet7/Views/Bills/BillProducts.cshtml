@@ -1,0 +1,109 @@
+﻿@using TodoSeUsa.Models.ViewModels;
+@model BillProductViewModel
+
+@{
+    ViewData["Title"] = "Productos de la factura";
+}
+
+<h1>Productos de la factura Cod. @Html.DisplayFor(model => model.Bill.BillId)</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tipo
+            </th>
+            <th>
+                Descripcion
+            </th>
+            <th>
+                Condicion
+            </th>
+            <th>
+                Estado
+            </th>
+            <th>
+                Precio
+            </th>
+            <th>
+                Reacondicionado
+            </th>
+            <th>
+                CR
+            </th>
+            <th>
+                Devolver
+            </th>
+            <th>
+                Devuelto
+            </th>
+            <th>
+                Vendido
+            </th>
+            <th>
+                Activo
+            </th>
+            <th>
+                Cod. Bill
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Products)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Condition)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reacondicionado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CostoReacondicionamiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Devolver)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Devuelto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sold)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillId)
+                </td>
+                <td class="dropdown vertical-bar-right">
+                    <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-cog"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item action-button" asp-controller="Products" asp-action="Edit" asp-route-id="@item.ProductId">Editar</a>
+                        <a class="dropdown-item action-button" asp-controller="Products" asp-action="Details" asp-route-id="@item.ProductId">Detalles</a>
+                        <a class="dropdown-item action-button" asp-controller="Products" asp-action="Delete" asp-route-id="@item.ProductId">Eliminar</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

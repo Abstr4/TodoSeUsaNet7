@@ -1,5 +1,11 @@
-html {
+html, body, main {
+  width: 100%;
+  height: 100%;
   font-size: 14px;
+}
+
+main {
+    position: relative;
 }
 
 @media (min-width: 768px) {
@@ -12,14 +18,37 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+nav {
+    top: 0;
+    z-index: 5000;
 }
 
-body {
-  margin-bottom: 60px;
+.container {
+    max-width: 768px;
+    padding-top: 84px;
 }
+
+
+/*.nav-item:not(:last-child) {
+    border-bottom: 1px solid #dee2e6 !important;
+}*/
+
+/*.nav-item:hover {
+    background-color: #212529;
+    color: #F9F6EE !important;
+}
+
+.navbar-light:hover, .navbar-nav:hover, .nav-link:hover {
+    color: #F9F6EE !important;
+}
+
+.nav-link {
+    text-align:center;
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-dark-rgb),var(--bs-text-opacity)) !important;
+
+}*/
+
 
 /*tab navigation*/
 .login-logout-card .card-header {
@@ -44,3 +73,4 @@ body {
 .login-logout-card .card-body {
     padding: 10px 20px;
 }
+

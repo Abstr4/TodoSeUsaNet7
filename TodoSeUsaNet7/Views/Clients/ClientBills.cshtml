@@ -1,0 +1,156 @@
+﻿@using TodoSeUsa.Models.ViewModels
+@model ClientBillViewModel
+
+@{
+    string Title = $"Facturas del cliente - {Model.FirstName} {Model.LastName} Cod. {Model.ClientId}";
+    ViewData["Title"] = Title;
+    int counter = 1;
+}
+<head>
+    <link rel="stylesheet" href="~/css/clienteFactura.css" type="text/css" />
+</head>
+
+<partial name="_BackButtonWTitle" model="Title" />
+
+<div class="d-flex">
+    <a class="btn btn-primary" asp-controller="Bills" asp-action="Create" asp-route-id="@Model.ClientId">Crear Factura</a>
+</div>
+
+<div class="d-flex justify-content-between mb-3 mt-4">
+    <form class="d-inline-flex" asp-action="ClientBills" method="get">
+        <div class="input-group">
+            <div class="form-outline">
+                <input id="searchBarInput" type="text" name="facturaId" class="form-control" placeholder="Buscar factura" value="" />
+            </div>
+            <button id="searchBarButton" type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </form>
+    <a class="btn btn-secondary" asp-action="ClientBills"><i class="fas fa-spinner"></i></a>
+</div>
+
+<hr />
+
+@if (Model.Bills != null && Model.Bills.Count != 0)
+{
+    
+    @foreach (var item in Model.Bills)
+    {
+        <!-- accordion -->
+        <div class="accordion mb-2" id="accordion@($"{counter}")">
+            <div class="accordion-item">
+                <!-- accordion header -->
+                <div class="accordion-header" id="heading@($"{counter}")">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse@($"{counter}")" aria-expanded="true" aria-controls="collapse@($"{counter}")">
+                        <div class="d-inline-flex w-100 justify-content-around">
+
+                            <p class="mb-auto">
+                                Factura Cod. @item.BillId
+                            </p>
+                            <p class="mb-auto">
+                                @item.DateCreated.ToString("MM/dd/yyyy")
+                            </p>
+                            <p class="mb-auto">
+                                @item.TotalProducts productos
+                            </p>
+                        </div>
+                    </button>
+                </div>
+                <div id="collapse@($"{counter}")" class="accordion-collapse collapse" aria-labelledby="heading@($"{counter}")" data-bs-parent="#accordion@($"{counter}")">
+                    <!-- accordion body -->
+                    <div class="accordion-body">
+                        <!-- dropdown options menu -->
+                        <div class="dropdown d-flex flex-row-reverse">
+                            <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item action-button" asp-controller="Bills" asp-action="Edit" asp-route-id="@item.BillId">Editar</a>
+                                <a class="dropdown-item action-button" asp-controller="Bills" asp-action="BillProducts" asp-route-id="@item.BillId">Productos</a>
+                            </div>
+                        </div>
+                        <!-- content table -->
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Bills != null)
+                                {
+                                    <tr>
+                                        <th>Cod. Factura</th>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BillId)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Fecha de emisión</th>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DateCreated)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Productos totales</th>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotalProducts)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Productos Vendidos</th>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ProductsSold)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Monto total</th>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotalAmountPerProducts)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Monto total vendido</th>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotalAmountSold)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Factura cerrada</th>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Closed)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Factura activa</th>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Active)
+                                        </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        counter++;
+    }
+}
+else
+{
+    <h5>Éste cliente no tiene facturas!</h5>
+}
+
+
+<div class="d-flex flex-row-reverse me-2">
+    <a class="btn btn-primary" asp-controller="Bills" asp-action="Create" asp-route-id="@Model.ClientId"><i class="fas fa-plus align-self-center"></i></a>
+</div>
+
+<hr />
+<div class="mt-2">
+    <a class="btn btn-secondary" asp-action="Index"><i class="fas fa-arrow-left"></i> Volver a la lista de clientes</a>
+</div>

@@ -1,0 +1,18 @@
+﻿.action-button {
+    margin-right: 5px
+}
+.vertical-bar-left {
+    border-left: solid 1px #808080;
+}
+
+.vertical-bar-right {
+    border-right: solid 1px #808080;
+}
+
+#searchBarInput {
+    border-radius: 5px 0px 0px 5px;
+}
+
+#searchBarButton {
+    border-radius: 0px 5px 5px 0px;
+}

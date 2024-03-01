@@ -1,0 +1,7 @@
+﻿.prevent-text-overflow {
+    text-overflow: ellipsis;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: middle;
+}

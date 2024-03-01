@@ -5,20 +5,23 @@
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/RegisterPage.css" type="text/css"/>
+</head>
 
 <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
     <h2 class="text-center">Create a new account.</h2>
     <hr />
     <div class="row">
-        <div class="col-6">
-            <div class="form-floating mb-3">
+        <div class="col-12 col-sm-6">
+            <div class="form-floating mb-3 prevent-text-overflow">
                 <input asp-for="Input.FirstName" class="form-control" autocomplete="firstname" aria-required="true" placeholder="Mary" />
                 <label asp-for="Input.FirstName">First Name</label>
                 <span asp-validation-for="Input.FirstName" class="text-danger"></span>
             </div>
         </div>
-        <div class="col-6">
-            <div class="form-floating mb-3">
+        <div class="col-12 col-sm-6">
+            <div class="form-floating mb-3 prevent-text-overflow">
                 <input asp-for="Input.LastName" class="form-control" autocomplete="lastname" aria-required="true" placeholder="Jane" />
                 <label asp-for="Input.LastName">Last Name</label>
                 <span asp-validation-for="Input.LastName" class="text-danger"></span>
