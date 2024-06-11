@@ -6,7 +6,7 @@ A simple inventory management system made with **.NET 7** for our family clothin
 * [Introduction](#introduction)
 * [Technologies](#technologies)
 * [Features](#features)
-* [Screenshots](#screenshots)
+* [The Site](#the-site)
 * [Setup](#setup)
 
 # Introduction
@@ -25,7 +25,18 @@ Motivated by my mom handwritting products, clients, and bills, created this simp
 - CRUD operations over products, clients and bills.
 - Listing and searching the entities above.
 
-# Screenshots
+# The Site
+
+## Accounts Page
+
+## Main Menu
+
+## Clients Page
+
+## Products Page
+
+## Bills Page
+
 
 # Setup
 
