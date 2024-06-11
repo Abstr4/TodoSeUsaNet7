@@ -3,20 +3,29 @@
 A simple inventory management system made with **.NET 7** for our family clothing store **TodoSeUsa**.
 
 ## Table of contents
-* [Introduction](#general-info)
+* [Introduction](#introduction)
 * [Technologies](#technologies)
 * [Features](#features)
+* [Screenshots](#screenshots)
 * [Setup](#setup)
 
 # Introduction
 
+Motivated by my mom handwritting products, clients, and bills, created this simple system that allows her to save in a secure way all that information, and most important, save her time.
+
 # Technologies
+
+- .NET 7 & C# 11
+- Microsoft SQL Server 2019 (RTM) - 15.0.2000.5 (X64)
+- Bootstrap v5.1.0
 
 # Features
 
-- Login and Register System implemented with .NET Identity.
+- Accounts system (register, login and logout) implemented with .NET Identity.
 - CRUD operations over products, clients and bills.
-- 
+- Listing and searching the entities above.
+
+# Screenshots
 
 # Setup
 
