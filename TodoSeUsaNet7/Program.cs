@@ -35,6 +35,13 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 var app = builder.Build();
 
+// Ensure the database is created
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<TodoSeUsaNet7Context>();
+    dbContext.Database.Migrate(); // Applies any pending migrations
+}
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
