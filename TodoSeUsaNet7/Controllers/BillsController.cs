@@ -30,10 +30,9 @@ namespace TodoSeUsa.Controllers
             var billQuery = _context.Bills.AsQueryable();
             if (search != null && search > 0)
             {
-                billQuery = billQuery.Where(f => f.BillId== search);
+                billQuery = billQuery.Where(f => f.BillId == search);
             }
-            var todoSeUsaContext = billQuery.Include(f => f.Client);
-            return View(await _context.Bills.ToListAsync());
+            return View(await billQuery.Include(f => f.Client).ToListAsync());
         }
 
         // GET: Bills/Details/5
@@ -46,7 +45,7 @@ namespace TodoSeUsa.Controllers
 
             var bill = await _context.Bills
                 .Include(f => f.Client)
-                .FirstOrDefaultAsync(m => m.BillId== id);
+                .FirstOrDefaultAsync(m => m.BillId == id);
             if (bill == null)
             {
                 return NotFound();
@@ -58,19 +57,26 @@ namespace TodoSeUsa.Controllers
         // GET: Bills/Create
 
         [HttpGet("Bills/Create/{id?}")]
-        [ApiExplorerSettings(IgnoreApi = true)]
+        // [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> Create(int? id)
         {
+            var clientContext = _context.Clients.AsQueryable();
             if (id != null && id > 0)
             {
-                Client? client = await _context.Clients.FirstOrDefaultAsync(c => c.ClientId == id);
+
+                Client? client = await clientContext.FirstOrDefaultAsync(c => c.ClientId == id);
                 if (client != null)
                 {
                     BillClientViewModel billClient = new(client.FirstName, client.LastName, id.Value);
                     return View(billClient);
                 }
             }
-            ViewData["ClientId"] = new SelectList(_context.Clients, "ClientId", "ClientId", id);
+            var clientSelectList = new List<SelectListItem>();
+            foreach (var client in clientContext)
+            {
+                clientSelectList.Add(new SelectListItem { Text =  client.FirstName + " " + client.LastName + $", Cod. Cliente: {client.ClientId}", Value = $"{client.ClientId}" });
+            }
+            ViewData["ClientId"] = clientSelectList;
             return View();
         }
 
@@ -78,34 +84,28 @@ namespace TodoSeUsa.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateBill([Bind("BillId, ClientId")] Bill bill)
+        public async Task<IActionResult> Create([Bind("BillId, ClientId")] Bill bill)
         {
             bill.DateCreated = DateTime.Now;
             if (ModelState.IsValid)
             {
                 await _context.AddAsync(bill);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(actionName: "BillProducts", new {id = bill.BillId}) ;
             }
-            ViewData["ClientId"] = new SelectList(_context.Clients, "ClientId", "ClientId", bill.ClientId);
-            return View(bill);
+            return NotFound();
         }
 
         // GET: Bills/Edit/5
 
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || _context.Bills == null)
-            {
-                return NotFound();
-            }
-
-            var bill = await _context.Bills.FindAsync(id);
+            var bill = await _context.Bills.Include(c => c.Client).FirstOrDefaultAsync(b => b.BillId == id);
             if (bill == null)
             {
                 return NotFound();
             }
-            ViewData["ClientId"] = new SelectList(_context.Clients, "ClientId", "LastName", bill.ClientId);
+            ViewData["ClientId"] = bill.Client.FirstName + " " + bill.Client.LastName + $"Cod. Cliente: {bill.ClientId}";
             return View(bill);
         }
 
@@ -194,7 +194,7 @@ namespace TodoSeUsa.Controllers
             }
             var bill = await _context.Bills.Where(f => f.BillId== id).FirstOrDefaultAsync();
             var products = await _context.Products.Where(p => p.BillId== id).ToListAsync();
-            if (products == null || bill == null)
+            if (bill == null)
             {
                 return NotFound();
             }

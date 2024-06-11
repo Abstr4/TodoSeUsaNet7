@@ -25,6 +25,8 @@ namespace TodoSeUsa.Controllers
 
             var clientsQuery = _context.Clients.AsQueryable();
 
+
+
             if (search != null && search != "")
             {
                 clientsQuery = clientsQuery.Where(c => c.FirstName.Contains(search) || c.LastName.Contains(search) || c.ClientId.ToString() == search);
@@ -32,7 +34,7 @@ namespace TodoSeUsa.Controllers
             var clients = await clientsQuery.ToListAsync();
             return clients != null ?
                         View(clients) :
-                        Problem("Entity set 'TodoSeUsaNet7Context.Clients'  is null.");
+                        Problem("No clients in context");
         }
 
 
@@ -67,6 +69,12 @@ namespace TodoSeUsa.Controllers
         {
             if (ModelState.IsValid)
             {
+                client.TotalProducts = 0;
+                client.TotalAmountPerProducts = 0;
+                client.TotalBills = 0;
+                client.TotalAmountSold = 0;
+                client.ProductsSold = 0;
+                client.Active = true;
                 _context.Add(client);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

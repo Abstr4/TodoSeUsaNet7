@@ -28,6 +28,10 @@ nav {
     padding-top: 84px;
 }
 
+p {
+    margin-bottom: 0px;
+}
+
 
 /*.nav-item:not(:last-child) {
     border-bottom: 1px solid #dee2e6 !important;
