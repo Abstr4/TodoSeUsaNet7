@@ -181,6 +181,8 @@ namespace TodoSeUsaNet7.Models.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            // User defined 
+
             migrationBuilder.CreateTable(
                 name: "Bill",
                 columns: table => new

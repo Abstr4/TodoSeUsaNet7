@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TodoSeUsaNet7.Models.Data;
 
@@ -11,9 +12,11 @@ using TodoSeUsaNet7.Models.Data;
 namespace TodoSeUsaNet7.Models.Migrations
 {
     [DbContext(typeof(TodoSeUsaNet7Context))]
-    partial class TodoSeUsaNet7ContextModelSnapshot : ModelSnapshot
+    [Migration("20240618042500_ProductTrigger")]
+    partial class ProductTrigger
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -168,7 +171,9 @@ namespace TodoSeUsaNet7.Models.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BillId"));
 
                     b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
@@ -179,7 +184,7 @@ namespace TodoSeUsaNet7.Models.Migrations
                     b.Property<DateTime>("DateCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 6, 18, 1, 50, 11, 607, DateTimeKind.Local).AddTicks(4349));
+                        .HasDefaultValue(new DateTime(2024, 6, 18, 1, 24, 59, 913, DateTimeKind.Local).AddTicks(2155));
 
                     b.Property<int>("ProductsSold")
                         .ValueGeneratedOnAdd()
@@ -207,7 +212,7 @@ namespace TodoSeUsaNet7.Models.Migrations
 
                     b.ToTable("Bill", null, t =>
                         {
-                            t.HasTrigger("UpdateClientOnBillChange");
+                            t.HasTrigger("BillTrigger");
                         });
                 });
 
@@ -246,29 +251,19 @@ namespace TodoSeUsaNet7.Models.Migrations
                         .HasColumnType("nvarchar(64)");
 
                     b.Property<int>("ProductsSold")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                        .HasColumnType("int");
 
                     b.Property<int>("TotalAmountPerProducts")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                        .HasColumnType("int");
 
                     b.Property<int>("TotalAmountSold")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                        .HasColumnType("int");
 
                     b.Property<int>("TotalBills")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                        .HasColumnType("int");
 
                     b.Property<int>("TotalProducts")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                        .HasColumnType("int");
 
                     b.HasKey("ClientId");
 
@@ -357,7 +352,9 @@ namespace TodoSeUsaNet7.Models.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
                     b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<int>("BillId")
                         .HasColumnType("int");
@@ -417,7 +414,7 @@ namespace TodoSeUsaNet7.Models.Migrations
 
                     b.ToTable("Product", null, t =>
                         {
-                            t.HasTrigger("UpdateBillOnProductChange");
+                            t.HasTrigger("ProductTrigger");
                         });
                 });
 
@@ -430,7 +427,9 @@ namespace TodoSeUsaNet7.Models.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SaleId"));
 
                     b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<int>("Amount")
                         .ValueGeneratedOnAdd()
@@ -446,7 +445,7 @@ namespace TodoSeUsaNet7.Models.Migrations
                     b.Property<DateTime>("DateOfIssue")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 6, 18, 1, 50, 11, 607, DateTimeKind.Local).AddTicks(7460));
+                        .HasDefaultValue(new DateTime(2024, 6, 18, 1, 24, 59, 913, DateTimeKind.Local).AddTicks(8412));
 
                     b.Property<string>("Detail")
                         .IsRequired()

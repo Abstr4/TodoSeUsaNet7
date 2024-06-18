@@ -87,6 +87,10 @@ namespace TodoSeUsa.Controllers
         public async Task<IActionResult> Create([Bind("BillId, ClientId")] Bill bill)
         {
             bill.DateCreated = DateTime.Now;
+            bill.TotalProducts = 0;
+            bill.ProductsSold = 0;
+            bill.TotalAmountPerProducts = 0;
+            bill.TotalAmountSold = 0;
             if (ModelState.IsValid)
             {
                 await _context.AddAsync(bill);
