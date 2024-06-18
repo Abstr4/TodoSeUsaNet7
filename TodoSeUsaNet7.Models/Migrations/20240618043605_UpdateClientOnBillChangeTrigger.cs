@@ -20,16 +20,16 @@ namespace TodoSeUsaNet7.Models.Migrations
             BEGIN
 	            DECLARE @ClientId int = (SELECT ClientId FROM inserted)
 
-	            UPDATE Client SET TotalProducts = (SELECT sum(TotalProducts) FROM Bill WHERE ClientId = @ClientId)
+	            UPDATE Client SET TotalProducts = (SELECT ISNULL(sum(TotalProducts), 0) FROM Bill WHERE ClientId = @ClientId)
 	            WHERE ClientId = @ClientId;
 
-	            UPDATE Client SET TotalAmountPerProducts = (SELECT sum(TotalAmountPerProducts) FROM Bill WHERE ClientId = @ClientId)
+	            UPDATE Client SET TotalAmountPerProducts = (SELECT ISNULL(sum(TotalAmountPerProducts), 0)git  FROM Bill WHERE ClientId = @ClientId)
 	            WHERE ClientId = @ClientId;
 
-	            UPDATE Client SET ProductsSold = (SELECT sum(ProductsSold) FROM Bill WHERE ClientId = @ClientId)
+	            UPDATE Client SET ProductsSold = (SELECT ISNULL(sum(ProductsSold), 0) FROM Bill WHERE ClientId = @ClientId)
 	            WHERE ClientId = @ClientId;
 
-	            UPDATE Client SET TotalAmountSold = (SELECT sum(TotalAmountSold) FROM Bill WHERE ClientId = @ClientId)
+	            UPDATE Client SET TotalAmountSold = (SELECT ISNULL(sum(TotalAmountSold), 0) FROM Bill WHERE ClientId = @ClientId)
 	            WHERE ClientId = @ClientId;
 
 		            UPDATE Client SET TotalBills = (SELECT count(BillId) FROM Bill WHERE ClientId = @ClientId)

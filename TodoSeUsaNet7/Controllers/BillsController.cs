@@ -86,13 +86,14 @@ namespace TodoSeUsa.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BillId, ClientId")] Bill bill)
         {
-            bill.DateCreated = DateTime.Now;
-            bill.TotalProducts = 0;
-            bill.ProductsSold = 0;
-            bill.TotalAmountPerProducts = 0;
-            bill.TotalAmountSold = 0;
             if (ModelState.IsValid)
             {
+                bill.DateCreated = DateTime.Now;
+                bill.TotalProducts = 0;
+                bill.ProductsSold = 0;
+                bill.TotalAmountPerProducts = 0;
+                bill.TotalAmountSold = 0;
+                bill.Active = true;
                 await _context.AddAsync(bill);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(actionName: "BillProducts", new {id = bill.BillId}) ;

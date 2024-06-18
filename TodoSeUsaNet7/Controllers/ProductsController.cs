@@ -72,10 +72,6 @@ namespace TodoSeUsa.Controllers
         {
             if (ModelState.IsValid)
             {
-                /*                if (product.Reacondicionado)
-                                {
-
-                                }*/
                 product.Active = true;
                 await _context.Products.AddAsync(product);
                 await _context.SaveChangesAsync();

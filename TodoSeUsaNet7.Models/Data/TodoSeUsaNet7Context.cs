@@ -35,7 +35,6 @@ public class TodoSeUsaNet7Context : IdentityDbContext<TodoSeUsaNet7User>
             builder.Entity<Bill>(entity =>
             {
                 entity.Property(e => e.ProductsSold).HasDefaultValue(0);
-   
                 entity.Property(e => e.TotalAmountPerProducts).HasDefaultValue(0);
                 entity.Property(e => e.TotalAmountSold).HasDefaultValue(0);
                 entity.Property(e => e.TotalProducts).HasDefaultValue(0);
@@ -49,7 +48,8 @@ public class TodoSeUsaNet7Context : IdentityDbContext<TodoSeUsaNet7User>
             entity.Property(e => e.Returned).HasDefaultValue(false);
             entity.Property(e => e.ReaconditioningCost).HasDefaultValue(0);
         });
-        builder.Entity<Sale>().ToTable("Sale").ToTable(tb => tb.HasTrigger("SaleTrigger"));
+        builder.Entity<Sale>().ToTable("Sale");
+        /*.ToTable(tb => tb.HasTrigger("SaleTrigger"));
         builder.Entity<Sale>(entity =>
         {
             entity.Property(e => e.Paid).HasDefaultValue(false);
@@ -59,6 +59,6 @@ public class TodoSeUsaNet7Context : IdentityDbContext<TodoSeUsaNet7User>
             entity.Property(e => e.Amount).HasDefaultValue(0);
             entity.Property(e => e.Paid).HasDefaultValue(0);
             entity.Property(e => e.Owes).HasDefaultValue(0);
-        });
+        });*/
     }
 }

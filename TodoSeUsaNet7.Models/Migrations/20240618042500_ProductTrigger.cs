@@ -28,11 +28,11 @@ namespace TodoSeUsaNet7.Models.Migrations
                     WHERE BillId = @BillId;
 
                     UPDATE Bill 
-                    SET TotalAmountPerProducts = (SELECT SUM(Price) FROM Product WHERE BillId = @BillId)
+                    SET TotalAmountPerProducts = (SELECT ISNULL(SUM(Price), 0) FROM Product WHERE BillId = @BillId)
                     WHERE BillId = @BillId;
 
                     UPDATE Bill 
-                    SET TotalAmountSold = (SELECT SUM(Price) FROM Product WHERE BillId = @BillId AND Sold = 1)
+                    SET TotalAmountSold = (SELECT ISNULL(SUM(Price), 0) FROM Product WHERE BillId = @BillId AND Sold = 1)
                     WHERE BillId = @BillId;
             END
             ");
