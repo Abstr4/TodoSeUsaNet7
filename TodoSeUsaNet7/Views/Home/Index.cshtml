@@ -32,7 +32,10 @@
             </a>
         </div>
         <div class="col-12 col-sm-6">
-            <a class="card btn button button-w-shadow" asp-controller="Clients" asp-action="Index">
+            <a class="card btn button button-w-shadow disabled" asp-controller="Clients" asp-action="Index">
+                <div class="position-absolute top-0 end-0 p-2">
+                    <p class="text-danger">Incoming feature!</p>
+                </div>
                 <div class="card-body d-flex justify-content-center align-items-center">
                     <i class="fa-2x fas fa-cash-register"></i>
                     <h5 class="card-title">Ventas</h5>

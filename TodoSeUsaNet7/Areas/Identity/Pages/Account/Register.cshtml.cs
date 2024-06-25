@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TodoSeUsaNet7.Models.Data;
 
@@ -30,13 +31,15 @@ namespace TodoSeUsaNet7.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<TodoSeUsaNet7User> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly TodoSeUsaNet7Context _todoSeUsaNet7Context;
 
         public RegisterModel(
             UserManager<TodoSeUsaNet7User> userManager,
             IUserStore<TodoSeUsaNet7User> userStore,
             SignInManager<TodoSeUsaNet7User> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            TodoSeUsaNet7Context todoSeUsaNet7Context)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -44,6 +47,7 @@ namespace TodoSeUsaNet7.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _todoSeUsaNet7Context = todoSeUsaNet7Context;
         }
 
         /// <summary>
@@ -128,6 +132,13 @@ namespace TodoSeUsaNet7.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+                // Check for existing users
+                var existingUser = await _todoSeUsaNet7Context.Users.FirstOrDefaultAsync();
+                if (existingUser != null)
+                {
+                    ModelState.AddModelError(string.Empty, "Only one account is allowed.");
+                    return Page();
+                }
                 var user = CreateUser();
 
                 user.FirstName = Input.FirstName;

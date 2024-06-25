@@ -13,6 +13,7 @@
     <h2 class="text-center">Create a new account.</h2>
     <hr />
     <div class="row">
+    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
         <div class="col-12 col-sm-6">
             <div class="form-floating mb-3 prevent-text-overflow">
                 <input asp-for="Input.FirstName" class="form-control" autocomplete="firstname" aria-required="true" placeholder="Mary" />
@@ -28,7 +29,6 @@
             </div>
         </div>
     </div>
-    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
     <div class="form-floating mb-3">
         <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
         <label asp-for="Input.Email">Email</label>
