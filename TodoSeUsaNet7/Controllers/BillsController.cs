@@ -197,7 +197,7 @@ namespace TodoSeUsa.Controllers
             {
                 return NotFound();
             }
-            var bill = await _context.Bills.Where(f => f.BillId== id).FirstOrDefaultAsync();
+            var bill = await _context.Bills.Where(f => f.BillId== id).Include(m => m.Client).FirstOrDefaultAsync();
             var products = await _context.Products.Where(p => p.BillId== id).ToListAsync();
             if (bill == null)
             {

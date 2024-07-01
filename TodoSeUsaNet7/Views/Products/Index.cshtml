@@ -10,7 +10,7 @@
     <h1>Productos</h1>
 </div>
 
-<a class="btn btn-primary mb-4" asp-action="Create">Crear Nuevo</a>
+<a class="btn btn-primary mb-4" asp-action="Index" asp-controller="Bills">Crear Nuevo</a>
 
 @* SearchBar *@
 <div class="d-flex justify-content-between mb-3">
@@ -166,7 +166,7 @@ else
 }
 
 <div class="d-flex justify-content-end pe-2">
-    <a class="btn btn-primary text-center" asp-action="Create"><i class="fas fa-plus"></i></a>
+    <a class="btn btn-primary text-center" asp-action="Index" asp-controller="Bills"><i class="fas fa-plus"></i></a>
 </div>
 
 <hr />

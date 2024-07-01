@@ -54,11 +54,15 @@ namespace TodoSeUsa.Controllers
 
         // GET: Products/Create
 
-        [HttpGet("Products/Create/{id?}")]
+        [HttpGet("Products/Create/{id}")]
         [ApiExplorerSettings(IgnoreApi = true)]
-        public IActionResult Create(int? id)
+        public IActionResult Create(int id)
         {
-            ViewData["BillId"] = new SelectList(_context.Bills, "BillId", "BillId", id);
+            var BillIdSelectList = new List<SelectListItem>
+            {
+                new SelectListItem { Text = $"Factura Nro. {id}", Value = $"{id}" }
+            };
+            ViewData["BillId"] = BillIdSelectList;
             return View();
         }
 
@@ -77,7 +81,17 @@ namespace TodoSeUsa.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BillId"] = new SelectList(_context.Bills, "BillId", "BillId", product.BillId);
+            if (product.BillId == 0)
+            {
+                
+                ModelState.AddModelError("BillId", "Please select a valid Bill ID.");
+            }
+            var BillIdSelectList = new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Seleccione el Código de la factura...", Value = null }
+            };
+
+            ViewData["BillId"] = BillIdSelectList;
             return View(product);
         }
 

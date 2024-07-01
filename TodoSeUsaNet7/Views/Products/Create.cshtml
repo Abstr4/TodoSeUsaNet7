@@ -20,8 +20,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <!--BillId -->
             <div class="form-group">
-                <label asp-for="BillId" class="control-label">Detalle Factura</label>
-                <select asp-for="BillId" class="form-control" asp-items="ViewBag.BillId"></select>
+                <!--if id from Create Functions is not null then lock this label to the bill code passed -->
+                <label asp-for="BillId" class="control-label">Cod. Factura</label>
+                <select asp-for="BillId" class="form-control" asp-items="ViewBag.BillId">
+                </select>
+                <span asp-validation-for="BillId" class="text-danger"></span>
             </div>
             <!-- Type -->
             <div class="form-group">
