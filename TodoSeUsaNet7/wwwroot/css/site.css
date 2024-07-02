@@ -79,6 +79,7 @@ p {
 }
 
 .footer-container {
+    margin-top: 128px;
     max-width: 960px;
     margin-left:auto;
     margin-right: auto;
