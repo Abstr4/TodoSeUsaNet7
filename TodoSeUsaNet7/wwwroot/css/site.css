@@ -78,3 +78,8 @@ p {
     padding: 10px 20px;
 }
 
+.footer-container {
+    max-width: 960px;
+    margin-left:auto;
+    margin-right: auto;
+}
