@@ -43,17 +43,21 @@
                 <!-- accordion header -->
                 <div class="accordion-header" id="heading@($"{counter}")">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse@($"{counter}")" aria-expanded="true" aria-controls="collapse@($"{counter}")">
-                        <div class="d-inline-flex w-100 justify-content-around">
-
-                            <p class="mb-auto">
-                                Factura Cod. @item.BillId
-                            </p>
-                            <p class="mb-auto">
-                                @item.DateCreated.ToString("MM/dd/yyyy")
-                            </p>
-                            <p class="mb-auto">
-                                @item.TotalProducts productos
-                            </p>
+                        <div class="d-inline-flex w-100 justify-content-around align-items-center">
+                            <div class="me-3">
+                                <p>@item.Client.FirstName @item.Client.LastName </p>
+                                <p>Cod. Cliente: @item.ClientId </p>
+                            </div>
+                            <div class="me-3">
+                                <p> Cod. Factura: @item.BillId </p>
+                            </div>
+                            <div class="me-3">
+                                <p> Cant. Productos: @item.TotalProducts </p>
+                            </div>
+                            <div class="me-3">
+                                <p>Fecha de emisión: </p>
+                                <p> @item.DateCreated.ToString("MM/dd/yyyy")</p>
+                            </div>
                         </div>
                     </button>
                 </div>
@@ -61,6 +65,9 @@
                     <!-- accordion body -->
                     <div class="accordion-body">
                         <!-- dropdown options menu -->
+                        <div class="d-flex justify-content-center">
+                            <h3>Factura de @item.Client.FirstName @item.Client.LastName Cod. cliente Nro @item.ClientId</h3>
+                        </div>
                         <div class="dropdown d-flex flex-row-reverse">
                             <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-cog"></i>

@@ -186,7 +186,7 @@ namespace TodoSeUsa.Controllers
                                      where client.ClientId == id
                                      select product;
 
-                clientProductoViewModel.Products = await clientProducts.ToListAsync();
+                clientProductoViewModel.Products = await clientProducts.Include(p => p.Bill).Include(p => p.Bill.Client).ToListAsync();
                 return View(clientProductoViewModel);
 
             }

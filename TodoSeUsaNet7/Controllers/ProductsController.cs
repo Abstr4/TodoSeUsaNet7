@@ -27,7 +27,7 @@ namespace TodoSeUsa.Controllers
             {
                 todoSeUsaContext = todoSeUsaContext.Where(p => p.ProductId == id);
             }
-            todoSeUsaContext = todoSeUsaContext.Include(p => p.Bill);
+            todoSeUsaContext = todoSeUsaContext.Include(p => p.Bill).Include(p => p.Bill.Client);
 
             return View(await todoSeUsaContext.ToListAsync());
         }
