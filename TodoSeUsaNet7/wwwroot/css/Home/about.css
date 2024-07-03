@@ -1,0 +1,19 @@
+﻿.title-with-icon
+{
+    display: flex;
+    align-items: center;
+}
+h3 {
+    margin-right: 0.5rem;
+}
+p {
+    padding-left: 1rem;
+}
+
+#heart {
+    color: lightcoral;
+}
+
+#hand-holding-dollar {
+    color: goldenrod;
+}
