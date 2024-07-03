@@ -13,7 +13,7 @@
 <partial name="_BackButtonWTitle" model="Title" />
 
 <div class="d-flex">
-    <a class="btn btn-primary" asp-controller="Bills" asp-action="Create" asp-route-id="@Model.ClientId">Crear Producto</a>
+    <a class="btn btn-primary" asp-action="ClientBills" asp-route-id="@Model.ClientId">Crear Producto</a>
 </div>
 
 <div class="d-flex justify-content-between mb-3 mt-4">
@@ -45,12 +45,20 @@
                         <div class="d-inline-flex w-100 justify-content-around">
 
                             <p class="mb-auto">
-                                Cod. Producto @item.ProductId
+                                Cod. Producto: @item.ProductId
                             </p>
                             <p class="mb-auto">
-                                Cod. Factura @item.BillId
+                                Cod. Factura: @item.BillId
                             </p>
-
+                            <p class="mb-auto">
+                                Prenda: @item.Type
+                            </p>
+                            <p class="mb-auto">
+                                Estado: @item.State
+                            </p>
+                            <p class="mb-auto">
+                                Precio: @item.Price
+                            </p>
                         </div>
                     </button>
                 </div>
@@ -58,6 +66,9 @@
                     <!-- accordion body -->
                     <div class="accordion-body">
                         <!-- dropdown options menu -->
+                        <div class="d-flex justify-content-center">
+                            <h3>Producto de @item.Bill.Client.FirstName @item.Bill.Client.LastName Cod. cliente Nro @item.Bill.ClientId</h3>
+                        </div>
                         <div class="dropdown d-flex flex-row-reverse">
                             <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-cog"></i>
@@ -167,7 +178,7 @@ else
     <h5>Éste cliente no tiene productos!</h5>
 }
 <div class="d-flex flex-row-reverse me-2">
-    <a class="btn btn-primary" asp-controller="Bills" asp-action="Create" asp-route-id="@Model.ClientId"><i class="fas fa-plus align-self-center"></i></a>
+    <a class="btn btn-primary" asp-action="ClientBills" asp-route-id="@Model.ClientId"><i class="fas fa-plus align-self-center"></i></a>
 </div>
 <hr />
 <div class="mt-2">
