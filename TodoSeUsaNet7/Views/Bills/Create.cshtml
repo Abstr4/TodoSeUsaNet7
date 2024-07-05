@@ -6,7 +6,7 @@
 }
 
 <div class="positon-relative d-flex justify-content-center mb-4">
-    <a class="btn btn-secondary position-absolute align-self-center start-0" asp-action="Index"><i class="fas fa-arrow-left"></i></a>
+    <a class="btn btn-secondary position-absolute align-self-center start-0" href='javascript:history.go(-1)'><i class="fas fa-arrow-left"></i></a>
     <h1>Crear Factura</h1>
 </div>
 @if (Model != null)
@@ -21,15 +21,8 @@
         <form id="form" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                @if (Model != null)
-                {
-                    <input asp-for="ClientId" value="@Model.ClientId" hidden=""/>
-                }
-                else
-                {
-                    <label asp-for="ClientId" class="control-label" ></label>
-                    <select asp-for="ClientId" class="form-control" asp-items="ViewBag.ClientId"></select>
-                }
+                <label asp-for="ClientId" class="control-label" ></label>
+                <select asp-for="ClientId" class="form-control" asp-items="ViewBag.ClientId"></select>
             </div>
         </form>
     </div>
@@ -41,7 +34,7 @@
 <hr />
 
 <div class="mt-2">
-    <a class="btn btn-secondary" asp-action="Index"> <i class="fas fa-arrow-left"></i> Volver a la lista</a>
+    <a class="btn btn-secondary" href='javascript:history.go(-1)'> <i class="fas fa-arrow-left"></i> Volver a la lista</a>    
 </div>
 
 @section Scripts {

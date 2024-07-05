@@ -11,7 +11,7 @@
     <h1 class="flex-grow-1 ms-5 text-center">Productos de la factura Cod: @Html.DisplayFor(model => model.Bill.BillId) de @Model.Bill.Client.FirstName @Model.Bill.Client.LastName Cod. Cliente: @Model.Bill.ClientId </h1>
 </div>
 
-<a class="btn btn-primary mb-4" asp-action="Create" asp-controller="Products" asp-route-id="@billId">Crear Nuevo</a>
+<a class="btn btn-primary mb-4" asp-action="Create" asp-controller="Products" asp-route-id="@billId">Agregar un producto</a>
 
 <hr />
 @if (Model != null && Model.Products.Count() != 0)
@@ -167,4 +167,4 @@ else
 
 <hr />
 
-<a class="btn btn-secondary align-self-center" asp-controller="Bills" asp-action="Index"><i class="fas fa-arrow-left"></i> Volver a las Facturas</a>
+<a class="btn btn-secondary align-self-center" asp-controller="Bills" asp-action="Index"><i class="fas fa-arrow-left"></i> Volver a las facturas</a>
