@@ -54,10 +54,26 @@ namespace TodoSeUsa.Controllers
 
         // GET: Products/Create
 
-        [HttpGet("Products/Create/{id}")]
+        /*[HttpGet("Products/Create/{id}")]*/
+        [HttpGet("Products/Create")]
         [ApiExplorerSettings(IgnoreApi = true)]
-        public IActionResult Create(int id)
+        public IActionResult Create(int id, int? clientId)
         {
+            if(clientId !=  null)
+            {
+                var clientBillsContext = _context.Bills.Where(bill => bill.ClientId == clientId);
+                var clientSelectList = new List<SelectListItem>();
+                foreach (Bill bill in clientBillsContext)
+                {
+                    clientSelectList.Add(new SelectListItem { Text = $"Factura Nro. {bill.BillId} del {bill.DateCreated.ToString("dd/MM/yyyy")}", Value = $"{bill.BillId}" });
+                }
+
+                var client = _context.Clients.FirstOrDefaultAsync(c => c.ClientId == clientId).Result;
+
+                ViewData["BillId"] = clientSelectList;
+                ViewData["Client"] = client;
+                return View();
+            }
             var BillIdSelectList = new List<SelectListItem>
             {
                 new SelectListItem { Text = $"Factura Nro. {id}", Value = $"{id}" }
