@@ -65,11 +65,18 @@ namespace TodoSeUsa.Controllers
             {
 
                 Client? client = await clientContext.FirstOrDefaultAsync(c => c.ClientId == id);
-                if (client != null)
+                /*if (client != null)
                 {
                     BillClientViewModel billClient = new(client.FirstName, client.LastName, id.Value);
                     return View(billClient);
-                }
+                }*/
+                var onlyClientSelectList = new List<SelectListItem>
+                {
+                    new SelectListItem { Text = client.FirstName + " " + client.LastName + $", Cod. Cliente: {client.ClientId}", Value = $"{client.ClientId}" }
+                };
+   
+                ViewData["ClientId"] = onlyClientSelectList;
+                return View();
             }
             var clientSelectList = new List<SelectListItem>();
             foreach (var client in clientContext)

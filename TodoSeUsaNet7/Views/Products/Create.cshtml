@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
+    var client = ViewData["Client"] as Client;
 }
 
 <head>
@@ -9,8 +10,15 @@
 </head>
 
 <div class="positon-relative d-flex justify-content-center mb-4">
-    <a class="btn btn-secondary position-absolute align-self-center start-0" asp-action="Index"><i class="fas fa-arrow-left"></i></a>
-    <h1>Crear producto</h1>
+    <a class="btn btn-secondary position-absolute align-self-center start-0" href='javascript:history.go(-1)'><i class="fas fa-arrow-left"></i></a>
+    @if (client != null)
+    {
+        <h1>Crear producto para @client.FirstName @client.LastName</h1>
+    }
+    else
+    {
+        <h1>Crear producto en la factura Cod. @ViewData["BillId"].</h1>
+    }
 </div>
 
 <hr />
@@ -34,7 +42,7 @@
             </div>
              <!-- Description -->
             <div class="form-group">
-                <label asp-for="Description">Description</label>
+                <label asp-for="Description">Descripción</label>
                 <textarea class="form-control" id="description-text-area" rows="3" placeholder="Ej: color azul con flores"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
@@ -54,7 +62,7 @@
             <div class="form-group">
                 <div class="form-check form-switch">
                     <label class="control-label d-flex align-items-center gap-2" >
-                        @Html.CheckBoxFor(m => m.Reaconditioned, htmlAttributes: new {@onclick="validate(this.id, 'cr-form-group', 'reacondicionado-input')", @class ="form-check-input", @role ="switch", @name="checkbox"}) Reaconditioned
+                        @Html.CheckBoxFor(m => m.Reaconditioned, htmlAttributes: new {@onclick="validate(this.id, 'cr-form-group', 'reacondicionado-input')", @class ="form-check-input", @role ="switch", @name="checkbox"}) Reacondicionado
                     </label>
                 </div>
                 <span asp-validation-for="Reaconditioned" class="text-danger"></span>
@@ -104,7 +112,7 @@
 <hr />
 
 <div class="d-flex mt-2">
-    <a class="btn btn-secondary" asp-action="Index"><i class="fa fa-arrow-left"></i> Volver a la lista</a>
+    <a class="btn btn-secondary" href='javascript:history.go(-1)'><i class="fa fa-arrow-left"></i> Volver a la lista</a>
 </div>
 
 <script src="~/js/checkbox-checked.js"></script>
