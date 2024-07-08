@@ -20,9 +20,13 @@ namespace TodoSeUsa.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index(int? id)
+        public async Task<IActionResult> Index(int? id, string? search)
         {
             var todoSeUsaContext = _context.Products.AsQueryable();
+            if (search != null && search != "")
+            {
+                todoSeUsaContext = todoSeUsaContext.Where(p => p.ProductId.ToString() == search || p.Condition.Contains(search) || p.Description.Contains(search) || p.Type.Contains(search) || p.State.Contains(search));
+            }
             if (id != null && id > 0)
             {
                 todoSeUsaContext = todoSeUsaContext.Where(p => p.ProductId == id);
@@ -57,7 +61,7 @@ namespace TodoSeUsa.Controllers
         /*[HttpGet("Products/Create/{id}")]*/
         [HttpGet("Products/Create")]
         [ApiExplorerSettings(IgnoreApi = true)]
-        public IActionResult Create(int id, int? clientId)
+        public IActionResult Create(int? id, int? clientId)
         {
             if(clientId !=  null)
             {
@@ -74,13 +78,30 @@ namespace TodoSeUsa.Controllers
                 ViewData["Client"] = client;
                 return View();
             }
-            var BillIdSelectList = new List<SelectListItem>
+            if (id != null)
             {
-                new SelectListItem { Text = $"Factura Nro. {id}", Value = $"{id}" }
-            };
-            ViewData["BillId"] = BillIdSelectList;
+                var Bill = _context.Bills.Include(c => c.Client).FirstOrDefaultAsync(b => b.BillId == id).Result;
+
+                var BillIdSelectList = new List<SelectListItem>
+                {
+                    new SelectListItem { Text = $"Factura Nro. {id} de {Bill.Client.FirstName} {Bill.Client.LastName}", Value = $"{id}" }
+                };
+                ViewData["BillId"] = BillIdSelectList;
+                ViewData["BillData"] = Bill;
+                return View();
+            }
+            var bills = _context.Bills.OrderBy(b => b.DateCreated).Include(c => c.Client).ToListAsync().Result;
+            var billsSelectList = new List<SelectListItem>();
+            foreach (var bill in bills)
+            {
+                billsSelectList.Add(new SelectListItem { Text = $"Factura Nro. {bill.BillId} del {bill.DateCreated.ToString("dd/MM/yyyy")} de {bill.Client.FirstName} {bill.Client.LastName}", Value = $"{bill.BillId}" });
+            }
+
+            ViewData["BillId"] = billsSelectList;
+            ViewData["BillData"] = bills;
             return View();
         }
+
 
         // POST: Products/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -88,14 +109,14 @@ namespace TodoSeUsa.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,Type,Description,State,Price,Reacondicionado,CostoReacondicionamiento,Devolver,Devuelto,Sold,BillId")] Product product)
+        public async Task<IActionResult> Create([Bind("ProductId,Type,Description,State,Price,Reaconditioned,ReaconditioningCost,MustReturn,Returned,Sold,BillId")] Product product)
         {
             if (ModelState.IsValid)
             {
                 product.Active = true;
                 await _context.Products.AddAsync(product);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("BillProducts", "Bills", new {id = product.BillId});
             }
             if (product.BillId == 0)
             {
@@ -119,20 +140,20 @@ namespace TodoSeUsa.Controllers
             {
                 return NotFound();
             }
-
-            var product = await _context.Products.FindAsync(id);
-            if (product == null)
+            var producto = await _context.Products.Where(p => p.ProductId == id).Include(p => p.Bill.Client).FirstOrDefaultAsync();
+            /*var product = await _context.Products.FindAsync(id);*/
+            if (producto == null)
             {
                 return NotFound();
             }
-            return View(product);
+            return View(producto);
         }
 
         // POST: Products/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Type,Description,State,Price,Reacondicionado,CostoReacondicionamiento,Devolver,Devuelto,BillId")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Type,Description,State,Price,Reaconditioned,ReaconditioningCost,MustReturn,Returned,Sold,BillId")] Product product)
         {
             if (id != product.ProductId)
             {
@@ -154,7 +175,7 @@ namespace TodoSeUsa.Controllers
                     }
                     else
                     {
-                        throw;
+                        return BadRequest();
                     }
                 }
                 return RedirectToAction(nameof(Index));
@@ -164,9 +185,9 @@ namespace TodoSeUsa.Controllers
 
         // GET: Products/Delete/5
 
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null || _context.Products == null)
+            if (_context.Products == null)
             {
                 return NotFound();
             }
@@ -188,10 +209,6 @@ namespace TodoSeUsa.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Products == null)
-            {
-                return Problem("Entity set 'TodoSeUsaNet7Context.Products'  is null.");
-            }
             var product = await _context.Products.FindAsync(id);
             if (product != null)
             {

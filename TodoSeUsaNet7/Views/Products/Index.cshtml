@@ -5,12 +5,14 @@
     int counter = 1;
 }
 
+<link rel="stylesheet" href="~/css/searchBarButtons.css" type="text/css" />
+
 <div class="positon-relative d-flex justify-content-center mb-4">
     <a class="btn btn-secondary position-absolute align-self-center start-0" asp-controller="Home" asp-action="Index"><i class="fas fa-arrow-left"></i></a>
     <h1>Productos</h1>
 </div>
 
-<a class="btn btn-primary mb-4" asp-action="Index" asp-controller="Bills">Crear producto</a>
+<a class="btn btn-primary mb-4" asp-action="Create">Crear producto</a>
 
 @* SearchBar *@
 <div class="d-flex justify-content-between mb-3">

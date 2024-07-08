@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Create";
     var client = ViewData["Client"] as Client;
+    var bill = ViewData["BillData"] as Bill;
 }
 
 <head>
@@ -10,14 +11,18 @@
 </head>
 
 <div class="positon-relative d-flex justify-content-center mb-4">
-    <a class="btn btn-secondary position-absolute align-self-center start-0" href='javascript:history.go(-1)'><i class="fas fa-arrow-left"></i></a>
+    <a class="btn btn-secondary position-absolute align-self-center start-0 me-4" href='javascript:history.go(-1)'><i class="fas fa-arrow-left"></i></a>
     @if (client != null)
     {
-        <h1>Crear producto para @client.FirstName @client.LastName</h1>
+        <h1 class="flex-grow-1 ms-5 text-center">Crear producto para @client.FirstName @client.LastName</h1>
+    }
+    else if (bill != null)
+    {
+        <h1 class="flex-grow-1 ms-5 text-center">Crear producto en la factura Cod. @bill.BillId de @bill.Client.FirstName @bill.Client.LastName </h1>
     }
     else
     {
-        <h1>Crear producto en la factura Cod. @ViewData["BillId"].</h1>
+        <h1>Crear Producto</h1>
     }
 </div>
 
@@ -59,44 +64,40 @@
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <!--Reaconditioned switch-->
-            <div class="form-group">
+            <div class="form-group d-flex align-items-start mb-2">
                 <div class="form-check form-switch">
-                    <label class="control-label d-flex align-items-center gap-2" >
-                        @Html.CheckBoxFor(m => m.Reaconditioned, htmlAttributes: new {@onclick="validate(this.id, 'cr-form-group', 'reacondicionado-input')", @class ="form-check-input", @role ="switch", @name="checkbox"}) Reacondicionado
-                    </label>
+                    <label class="control-label" asp-for="Reaconditioned">Reacondicionado</label>
+                        @Html.CheckBoxFor(m => m.Reaconditioned, htmlAttributes: new {@onclick="validate(this.id, 'cr-form-group', 'reacondicionado-input')", @class ="form-check-input", @role ="switch", @name="checkbox"}) 
                 </div>
                 <span asp-validation-for="Reaconditioned" class="text-danger"></span>
             </div>
             @* Costo reacondicionamiento *@
-            <div id="cr-form-group" class="form-group ps-3" hidden="">
-                <label asp-for="ReaconditioningCost" class="control-label">Costo Reacondicionamiento</label>
+            <div id="cr-form-group" class="form-group ps-3" >
+                <label asp-for="ReaconditioningCost" class="control-label">Costo del reacondicionamiento</label>
                 <input id="reacondicionado-input" asp-for="ReaconditioningCost" class="form-control" min="0" oninput="validity.valid||(value=0);" placeholder="0" type="number"/>
                 <span asp-validation-for="ReaconditioningCost" class="text-danger"></span>
             </div>
             <!-- MustReturn switch -->
-            <div class="form-group">
+            <div class="form-group d-flex align-items-start mb-2">
                 <div class="form-check form-switch">
-                    <label class="control-label d-flex align-items-center gap-2" >
-                    @Html.CheckBoxFor(m => m.MustReturn, htmlAttributes: new {@onclick="validate(this.id, 'devuelto-form-group', 'devuelto-switch')", @class ="form-check-input", @role ="switch"}) A devolver
-                    </label>
+                    <label class="control-label" asp-for="MustReturn">Debe devolver</label>
+                    @Html.CheckBoxFor(m => m.MustReturn, htmlAttributes: new {@onclick="validate(this.id, 'devuelto-form-group', 'devuelto-switch')", @class ="form-check-input", @role ="switch"}) 
                 </div>
                 <span asp-validation-for="MustReturn" class="text-danger"></span>
             </div>
             <!-- Returned switch -->
-            <div id="devuelto-form-group" class="form-group ps-3" hidden="">
+            <div id="devuelto-form-group" class="form-group ps-3" >
                 <div class="form-check form-switch">
-                    <label class="control-label d-flex align-items-center gap-2" >
-                        @Html.CheckBoxFor(m => m.Returned, htmlAttributes: new {@id="devuelto-switch", @class ="form-check-input", @role ="switch"}) Returned
-                    </label>
+                    <label class="control-label" asp-for="Returned">Devuelto</label>
+                        @Html.CheckBoxFor(m => m.Returned, htmlAttributes: new {@id="devuelto-switch", @class ="form-check-input", @role ="switch"}) 
                 </div>
                 <span asp-validation-for="Returned" class="text-danger"></span>
             </div>
-            <!-- Vendido switch -->
-            <div id="vendido-form-group" class="form-group">
+            <!-- Sold switch -->
+            <div id="vendido-form-group" class="form-group d-flex align-items-start mb-2">
                 <div class="form-check form-switch">
-                    <label class="control-label d-flex align-items-center gap-2">
-                        @Html.CheckBoxFor(m => m.Sold, htmlAttributes: new {@id="vendido-switch", @class ="form-check-input", @role ="switch"}) Vendido
-                    </label>
+                    <label class="control-label" asp-for="Sold">Vendido</label>
+                        @Html.CheckBoxFor(m => m.Sold, htmlAttributes: new {@id="vendido-switch", @class ="form-check-input", @role ="switch"})
                 </div>
                 <span asp-validation-for="Sold" class="text-danger"></span>
             </div>
@@ -119,6 +120,7 @@
 
 @section Scripts {
     @{
+
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }

@@ -10,11 +10,11 @@ namespace TodoSeUsaNet7.Models
         public int ProductId { get; set; }
 
         [Required]
-        [MaxLength(100, ErrorMessage = "Max. Length of {0}")]
+        [MaxLength(100, ErrorMessage = "Longitud máxima de {0}")]
         [Display(Name = "Tipo")]
         public string Type { get; set; }
 
-        [MaxLength(500, ErrorMessage = "Max. Length of {0}")]
+        [MaxLength(500, ErrorMessage = "Longitud máxima de {0}")]
         [Display(Name = "Descripción")]
         public string? Description { get; set; } 
 
@@ -23,22 +23,21 @@ namespace TodoSeUsaNet7.Models
         public string? Condition { get; set; } 
 
         [Required]
-        [MaxLength(25, ErrorMessage = "Max. Length of {0}")]
+        [MaxLength(25, ErrorMessage = "Longitud máxima de {0}")]
         [Display(Name = "Estado")]
         public string State { get; set; } 
 
         [Required]
-        [Range(0, Int32.MaxValue, ErrorMessage = "Price must be greater than 0")]
+        [Range(0, Int32.MaxValue, ErrorMessage = "El precio debe ser mayor a 0 (cero)")]
         [Display(Name = "Precio")]
         public int Price { get; set; }
 
         [Display(Name = "Reacondicionado")]
         public bool Reaconditioned { get; set; }
 
-        [Required]
         [Display(Name = "Costo de reacondicionamiento")]
-        [Range(0, Int32.MaxValue, ErrorMessage = "Cost must be greater than 0")]
-        public int ReaconditioningCost { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "El costo debe ser mayor a 0 (cero)")]
+        public int? ReaconditioningCost { get; set; }
 
         [Display(Name = "Devolver")]
         public bool MustReturn { get; set; }

@@ -2,14 +2,14 @@
     if (document.getElementById(id).checked) {
         show(elem)
     } else {
-        hide(elem)
+/*        hide(elem)*/
         reset(child)
     }
 }
 
-function hide(elem) {
+/*function hide(elem) {
     document.getElementById(elem).hidden = true
-}
+}*/
 function show(elem) {
     document.getElementById(elem).hidden = false
 }
