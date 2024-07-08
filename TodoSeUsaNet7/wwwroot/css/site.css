@@ -101,3 +101,8 @@ p {
     transform: scale(1.2);
     transition-duration: 0.3s;
 }
+
+.menu-bar-text:hover 
+{
+    transform: scale(1.1) !important;
+}
