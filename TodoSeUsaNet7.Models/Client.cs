@@ -20,6 +20,7 @@ namespace TodoSeUsaNet7.Models
 
         [MaxLength(64)]
         [Display(Name = "Num. Telefono")]
+        [RegularExpression(@"^\d+$", ErrorMessage = "El número de teléfono solo puede contener números.")]
         public string? PhoneNumber { get; set; }
 
         [MaxLength(64)]

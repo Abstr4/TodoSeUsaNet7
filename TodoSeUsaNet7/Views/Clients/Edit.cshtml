@@ -1,7 +1,7 @@
 ﻿@model TodoSeUsaNet7.Models.Client
 
 @{
-    string Title = $"Editar información del cliente - {Model.FirstName} {Model.LastName} Cod. {Model.ClientId} ";
+    string Title = $"Editar información del cliente";
     ViewData["Title"] = Title;
     bool isActive = Model.Active;
     string switchWord = isActive ? "baja" : "alta";
@@ -9,7 +9,7 @@
 }
 
 <partial name="_BackButtonWTitle" model="Title" />
-
+<h4>Cliente @Model.FirstName @Model.LastName código @Model.ClientId</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">

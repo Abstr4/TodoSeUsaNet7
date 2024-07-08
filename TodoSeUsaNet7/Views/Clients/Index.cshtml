@@ -93,7 +93,13 @@ else
                                 @if (Model != null)
                                 {
                                     <tr>
-                                        <th>Productos totales</th>
+                                        <th>Cant. facturas</th>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotalBills)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Cant. productos</th>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.TotalProducts)
                                         </td>

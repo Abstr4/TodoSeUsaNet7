@@ -2,7 +2,7 @@
 @model ClientBillViewModel
 
 @{
-    string Title = $"Facturas del cliente - {Model.FirstName} {Model.LastName} Cod. {Model.ClientId}";
+    string Title = $"Facturas del cliente {Model.FirstName} {Model.LastName} Cod. {Model.ClientId}";
     ViewData["Title"] = Title;
     int counter = 1;
 }
@@ -73,8 +73,9 @@
                                 <i class="fa fa-cog"></i>
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item action-button" asp-controller="Bills" asp-action="Edit" asp-route-id="@item.BillId">Editar</a>
-                                <a class="dropdown-item action-button" asp-controller="Bills" asp-action="BillProducts" asp-route-id="@item.BillId">Productos</a>
+                                @* Edit link *@
+@*                                 <a class="dropdown-item action-button" asp-controller="Bills" asp-action="Edit" asp-route-id="@item.BillId">Editar</a>
+ *@                                <a class="dropdown-item action-button" asp-controller="Bills" asp-action="BillProducts" asp-route-id="@item.BillId">Productos</a>
                             </div>
                         </div>
                         <!-- content table -->

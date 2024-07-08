@@ -7,6 +7,7 @@
 
 <head>
     <link rel="stylesheet" href="~/css/clienteFactura.css" type="text/css" />
+    <link rel="stylesheet" href="~/css/searchBarButtons.css" type="text/css" />
 </head>
 
 <div class="positon-relative d-flex justify-content-center mb-4">
@@ -29,7 +30,9 @@
             </button>
         </div>
     </form>
-    <a class="btn btn-secondary" asp-action="Index"><i class="fas fa-spinner"></i></a>
+    <div>
+        <a class="btn btn-secondary" asp-action="Index"><i class="fas fa-spinner"></i></a>
+    </div>
 </div>
 
 <hr />
@@ -78,7 +81,8 @@ else
                                 <i class="fa fa-cog"></i>
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item action-button" asp-controller="Bills" asp-action="Edit" asp-route-id="@item.BillId">Editar</a>
+                                @* Edit link if you need it *@
+                                @* <a class="dropdown-item action-button" asp-controller="Bills" asp-action="Edit" asp-route-id="@item.BillId">Editar</a> *@
                                 <a class="dropdown-item action-button" asp-controller="Bills" asp-action="BillProducts" asp-route-id="@item.BillId">Productos</a>
                             </div>
                         </div>
