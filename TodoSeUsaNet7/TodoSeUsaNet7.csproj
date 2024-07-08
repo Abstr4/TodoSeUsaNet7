@@ -1743,4 +1743,9 @@
     <ProjectReference Include="..\TodoSeUsaNet7.Models\TodoSeUsaNet7.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\css\Bills\" />
+    <Folder Include="wwwroot\css\Products\" />
+  </ItemGroup>
+
 </Project>

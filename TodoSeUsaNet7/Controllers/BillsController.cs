@@ -24,13 +24,15 @@ namespace TodoSeUsa.Controllers
 
         // GET: Bills
         [HttpGet]
-        public async Task<IActionResult> Index(int? search)
+        public async Task<IActionResult> Index(string? search)
         {
 
             var billQuery = _context.Bills.AsQueryable();
-            if (search != null && search > 0)
+            if (search != null && search != "")
             {
-                billQuery = billQuery.Where(f => f.BillId == search);
+                billQuery = billQuery.Where(b => b.BillId.ToString() == search ||
+                                                 b.Client.FirstName.Contains(search) ||
+                                                 b.Client.LastName.Contains(search));
             }
             return View(await billQuery.Include(f => f.Client).ToListAsync());
         }
@@ -108,8 +110,10 @@ namespace TodoSeUsa.Controllers
             return NotFound();
         }
 
-        // GET: Bills/Edit/5
+        // Keep this code if you want a custom Edit endpoint
 
+        // GET: Bills/Edit/5
+/*
         public async Task<IActionResult> Edit(int id)
         {
             var bill = await _context.Bills.Include(c => c.Client).FirstOrDefaultAsync(b => b.BillId == id);
@@ -154,7 +158,7 @@ namespace TodoSeUsa.Controllers
             }
             ViewData["ClientId"] = new SelectList(_context.Clients, "ClientId", "LastName", bill.ClientId);
             return View(bill);
-        }
+        }*/
 
         // GET: Bills/Delete/5
 

@@ -20,7 +20,7 @@ namespace TodoSeUsa.Controllers
 
         // GET: Clients
         [HttpGet]
-        public async Task<IActionResult> Index(string search)
+        public async Task<IActionResult> Index(string? search)
         {
 
             var clientsQuery = _context.Clients.AsQueryable();
