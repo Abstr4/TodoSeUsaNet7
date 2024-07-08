@@ -4,69 +4,106 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<div class="positon-relative d-flex justify-content-center mb-4">
+    <a class="btn btn-secondary position-absolute align-self-center start-0" href='javascript:history.go(-1)'><i class="fas fa-arrow-left"></i></a>
+    <h1>Editar Producto</h1>
+</div>
 
-<h4>Producto</h4>
+<h5>Producto código @Model.ProductId de @Model.Bill.Client.FirstName @Model.Bill.Client.LastName</h5>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ProductId" />
-            <div class="form-group">
+            <!-- Type -->
+            <div class="form-group mb-2">
                 <label asp-for="Type" class="control-label"></label>
-                <input asp-for="Type" class="form-control" />
+                <input asp-for="Type" class="form-control" placeholder="Ej: Remera, pantalon, jean" />
                 <span asp-validation-for="Type" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+            <!-- Description -->
+            <div class="form-group mb-2">
+                <label asp-for="Description">Descripción</label>
+                <input asp-for="Description" class="form-control" id="description-text-area" rows="3" placeholder="Ej: color azul con flores"></input>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @* State *@
+            <div class="form-group mb-2">
                 <label asp-for="State" class="control-label"></label>
-                <input asp-for="State" class="form-control" />
+                <input asp-for="State" class="form-control" placeholder="Ej: Nuevo, usado, gastado" />
                 <span asp-validation-for="State" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @* Price *@
+            <div class="form-group mb-2">
                 <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
+                <input asp-for="Price" class="form-control" min="1" oninput="validity.valid||(value='');" placeholder="0" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Reaconditioned" class="control-label"></label>
-                <input asp-for="Reaconditioned" class="form-control" />
+            <!--Reaconditioned switch-->
+            <div class="form-group d-flex align-items-start mb-2">
+                <div class="form-check form-switch">
+                    <label class="control-label" asp-for="Reaconditioned">Reacondicionado</label>
+                    @Html.CheckBoxFor(m => m.Reaconditioned, htmlAttributes: new { @onclick = "validate(this.id, 'cr-form-group', 'reacondicionado-input')", @class = "form-check-input", @role = "switch", @name = "checkbox" })
+                </div>
                 <span asp-validation-for="Reaconditioned" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ReaconditioningCost" class="control-label"></label>
-                <input asp-for="ReaconditioningCost" class="form-control" />
+            @* Costo reacondicionamiento *@
+            <div id="cr-form-group" class="form-group ps-3 mb-2">
+                <label asp-for="ReaconditioningCost" class="control-label">Costo del reacondicionamiento</label>
+                <input id="reacondicionado-input" asp-for="ReaconditioningCost" class="form-control" min="0" oninput="validity.valid||(value=0);" placeholder="0" type="number" />
                 <span asp-validation-for="ReaconditioningCost" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MustReturn" class="control-label"></label>
-                <input asp-for="MustReturn" class="form-control" />
+            <!-- MustReturn switch -->
+            <div class="form-group d-flex align-items-start mb-2">
+                <div class="form-check form-switch">
+                    <label class="control-label" asp-for="MustReturn">Debe devolver</label>
+                    @Html.CheckBoxFor(m => m.MustReturn, htmlAttributes: new { @onclick = "validate(this.id, 'devuelto-form-group', 'devuelto-switch')", @class = "form-check-input", @role = "switch" })
+                </div>
                 <span asp-validation-for="MustReturn" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Returned" class="control-label"></label>
-                <input asp-for="Returned" class="form-control" />
+            <!-- Returned switch -->
+            <div id="devuelto-form-group" class="form-group ps-3 mb-2">
+                <div class="form-check form-switch">
+                    <label class="control-label" asp-for="Returned">Devuelto</label>
+                    @Html.CheckBoxFor(m => m.Returned, htmlAttributes: new { @id = "devuelto-switch", @class = "form-check-input", @role = "switch" })
+                </div>
                 <span asp-validation-for="Returned" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="BillId" class="control-label">Producto en factura Nro: @Model.BillId</label>
+            <!-- Sold switch -->
+            <div id="vendido-form-group" class="form-group d-flex align-items-start mb-2">
+                <div class="form-check form-switch">
+                    <label class="control-label" asp-for="Sold">Vendido</label>
+                    @Html.CheckBoxFor(m => m.Sold, htmlAttributes: new { @id = "vendido-switch", @class = "form-check-input", @role = "switch" })
+                </div>
+                <span asp-validation-for="Sold" class="text-danger"></span>
             </div>
-            <div class="form-group mt-5">
+
+            <div class="form-group">
+                <input type="hidden" asp-for="BillId" class="form-control" />
+                <span asp-validation-for="BillId" class="text-danger"></span>
+            </div>
+
+            @* create button *@
+            <div class="form-group d-flex flex-row-reverse">
                 <input type="submit" value="Guardar cambios" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+
+<div class="d-flex mt-5">
+    <a class="btn btn-secondary" href='javascript:history.go(-1)'><i class="fa fa-arrow-left"></i> Volver a la lista</a>
 </div>
 
 @section Scripts {
+    <script src="~/js/checkbox-checked.js"></script>
+   @*  <script>
+        document.getElementById('Return').addEventListener('change', function () {
+            document.getElementById('Returned'). = ;
+        });
+    </script> *@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
