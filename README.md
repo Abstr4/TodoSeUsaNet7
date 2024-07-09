@@ -4,18 +4,14 @@ Project Description
 -------------------
 Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)** ([LinkedIn](https://www.linkedin.com/in/matiasrojasmargaritini/)). This project is a simple inventory management system made with **C# .NET 7** for our family clothing store **TodoSeUsa**.
 
-  This **IMS** project will allow you to create, edit, and save clients, bills and products to a **SQL Server** database and keep them secure with the login system. If you find my project useful star :star: the repository :smile:. You can also [support me here]().
+  This **IMS** project will allow you to create, edit, and save clients, bills and products to a **SQL Server** database and keep them secure with the login system. If you find my project useful star :star: the repository :smile:. You can also [support me financially here]() or by leaving a comment in my **[LinkedIn]()**. 
 
 ## Table of contents
-* [Introduction](#introduction)
+* [Introduction](#project-description)
 * [Technologies](#technologies)
 * [Features](#features)
 * [The Site](#the-site)
 * [Setup](#setup)
-
-# Introduction
-
-Motivated by my mom handwritting products, clients, and bills, created this simple system that allows her to save in a secure way all that information, and most important, save her time.
 
 # Technologies
 
