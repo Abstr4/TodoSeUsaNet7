@@ -2,18 +2,22 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using TodoSeUsaNet7.Models.Data;
+using TodoSeUsaNet7.Models.Seeding;
+using TodoSeUsaNet7.Models.Services;
+
+
 var builder = WebApplication.CreateBuilder(args);
 // Retrieve the connection string from the environment variable
-var connectionString = Environment.GetEnvironmentVariable("TODOSEUSANET7_CONNECTION_STRING");
-
-// Fall back to the value from appsettings.json if the environment variable is not set
-if (string.IsNullOrEmpty(connectionString))
-{
-    connectionString = builder.Configuration.GetConnectionString("TodoSeUsaNet7ContextConnection") ?? throw new InvalidOperationException("Connection string 'TodoSeUsaNet7ContextConnection' not found.");
-}
-
+var connectionString = Environment.GetEnvironmentVariable("TODOSEUSANET7_CONNECTION_STRING_DEMO");
+/*                       ?? Environment.GetEnvironmentVariable("TODOSEUSANET7_CONNECTION_STRING");
+*/
 
 builder.Services.AddDbContext<TodoSeUsaNet7Context>(options => options.UseSqlServer(connectionString));
+
+// DatabaseResetService Service
+builder.Services.AddScoped<DatabaseResetService>();
+
+builder.Services.AddHostedService<DatabaseResetHostedService>();
 
 builder.Services.AddDefaultIdentity<TodoSeUsaNet7User>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<TodoSeUsaNet7Context>();
 
@@ -48,7 +52,12 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<TodoSeUsaNet7Context>();
-    dbContext.Database.Migrate(); // Applies any pending migrations
+
+    // Applies any pending migrations
+    dbContext.Database.Migrate(); 
+
+    // Seed data
+    await DataSeeder.SeedDataAsync(dbContext);
 }
 
 
