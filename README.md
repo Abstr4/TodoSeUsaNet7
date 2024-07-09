@@ -24,7 +24,7 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
 
 - Accounts system (register, login and logout) implemented with .NET Identity.
 - CRUD operations over products, clients and bills.
-- Listing and searching the entities above.
+- Listing, searching and filtering the entities above.
 
 # The Site
 
