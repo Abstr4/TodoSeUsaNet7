@@ -15,6 +15,7 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
 
 # Technologies
 
+- ASP .NET CORE MVC
 - .NET 7 & C# 11
 - Microsoft SQL Server 2019 (RTM) - 15.0.2000.5 (X64)
 - Bootstrap v5.1.0
