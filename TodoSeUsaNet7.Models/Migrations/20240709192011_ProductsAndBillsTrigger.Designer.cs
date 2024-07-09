@@ -12,15 +12,15 @@ using TodoSeUsaNet7.Models.Data;
 namespace TodoSeUsaNet7.Models.Migrations
 {
     [DbContext(typeof(TodoSeUsaNet7Context))]
-    [Migration("20240618045011_ClientDefaultValues")]
-    partial class ClientDefaultValues
+    [Migration("20240709192011_ProductsAndBillsTrigger")]
+    partial class ProductsAndBillsTrigger
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.16")
+                .HasAnnotation("ProductVersion", "7.0.18")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -182,7 +182,7 @@ namespace TodoSeUsaNet7.Models.Migrations
                     b.Property<DateTime>("DateCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 6, 18, 1, 50, 11, 607, DateTimeKind.Local).AddTicks(4349));
+                        .HasDefaultValue(new DateTime(2024, 7, 9, 16, 20, 11, 117, DateTimeKind.Local).AddTicks(3656));
 
                     b.Property<int>("ProductsSold")
                         .ValueGeneratedOnAdd()
@@ -226,13 +226,13 @@ namespace TodoSeUsaNet7.Models.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Address")
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -366,8 +366,8 @@ namespace TodoSeUsaNet7.Models.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Condition")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("Description")
                         .HasMaxLength(500)
@@ -386,7 +386,7 @@ namespace TodoSeUsaNet7.Models.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ReaconditioningCost")
+                    b.Property<int?>("ReaconditioningCost")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValue(0);
@@ -404,13 +404,13 @@ namespace TodoSeUsaNet7.Models.Migrations
 
                     b.Property<string>("State")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("ProductId");
 
@@ -436,9 +436,7 @@ namespace TodoSeUsaNet7.Models.Migrations
                         .HasColumnType("bit");
 
                     b.Property<int>("Amount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                        .HasColumnType("int");
 
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
@@ -447,9 +445,7 @@ namespace TodoSeUsaNet7.Models.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("DateOfIssue")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 6, 18, 1, 50, 11, 607, DateTimeKind.Local).AddTicks(7460));
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Detail")
                         .IsRequired()
@@ -464,28 +460,19 @@ namespace TodoSeUsaNet7.Models.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Owes")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                        .HasColumnType("int");
 
                     b.Property<int>("Paid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                        .HasColumnType("int");
 
                     b.Property<int>("TotalProducts")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                        .HasColumnType("int");
 
                     b.HasKey("SaleId");
 
                     b.HasIndex("ClientId");
 
-                    b.ToTable("Sale", null, t =>
-                        {
-                            t.HasTrigger("SaleTrigger");
-                        });
+                    b.ToTable("Sale", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

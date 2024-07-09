@@ -61,14 +61,14 @@ namespace TodoSeUsaNet7.Models.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false),
-                    TotalBills = table.Column<int>(type: "int", nullable: false),
-                    TotalProducts = table.Column<int>(type: "int", nullable: false),
-                    ProductsSold = table.Column<int>(type: "int", nullable: false),
-                    TotalAmountPerProducts = table.Column<int>(type: "int", nullable: false),
-                    TotalAmountSold = table.Column<int>(type: "int", nullable: false)
+                    TotalBills = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
+                    TotalProducts = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
+                    ProductsSold = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
+                    TotalAmountPerProducts = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
+                    TotalAmountSold = table.Column<int>(type: "int", nullable: false, defaultValue: 0)
                 },
                 constraints: table =>
                 {
@@ -181,19 +181,17 @@ namespace TodoSeUsaNet7.Models.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            // User defined 
-
             migrationBuilder.CreateTable(
                 name: "Bill",
                 columns: table => new
                 {
                     BillId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TotalProducts = table.Column<int>(type: "int", nullable: false),
-                    ProductsSold = table.Column<int>(type: "int", nullable: false),
-                    TotalAmountPerProducts = table.Column<int>(type: "int", nullable: false),
-                    TotalAmountSold = table.Column<int>(type: "int", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 7, 9, 16, 19, 14, 462, DateTimeKind.Local).AddTicks(1517)),
+                    TotalProducts = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
+                    ProductsSold = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
+                    TotalAmountPerProducts = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
+                    TotalAmountSold = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
                     Closed = table.Column<bool>(type: "bit", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false),
                     ClientId = table.Column<int>(type: "int", nullable: false)
@@ -244,15 +242,15 @@ namespace TodoSeUsaNet7.Models.Migrations
                 {
                     ProductId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Type = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    Condition = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    State = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    Condition = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    State = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
-                    Reaconditioned = table.Column<bool>(type: "bit", nullable: false),
-                    ReaconditioningCost = table.Column<int>(type: "int", nullable: false),
-                    MustReturn = table.Column<bool>(type: "bit", nullable: false),
-                    Returned = table.Column<bool>(type: "bit", nullable: false),
+                    Reaconditioned = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    ReaconditioningCost = table.Column<int>(type: "int", nullable: true, defaultValue: 0),
+                    MustReturn = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    Returned = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     Sold = table.Column<bool>(type: "bit", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false),
                     BillId = table.Column<int>(type: "int", nullable: false),

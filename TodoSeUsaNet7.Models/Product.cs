@@ -10,7 +10,7 @@ namespace TodoSeUsaNet7.Models
         public int ProductId { get; set; }
 
         [Required]
-        [MaxLength(100, ErrorMessage = "Longitud máxima de {0}")]
+        [MaxLength(256, ErrorMessage = "Longitud máxima de {0}")]
         [Display(Name = "Tipo")]
         public string Type { get; set; }
 
@@ -18,12 +18,12 @@ namespace TodoSeUsaNet7.Models
         [Display(Name = "Descripción")]
         public string? Description { get; set; } 
 
-        [MaxLength(500)]
+        [MaxLength(256)]
         [Display(Name = "Condición")]
         public string? Condition { get; set; } 
 
         [Required]
-        [MaxLength(25, ErrorMessage = "Longitud máxima de {0}")]
+        [MaxLength(256, ErrorMessage = "Longitud máxima de {0}")]
         [Display(Name = "Estado")]
         public string State { get; set; } 
 
@@ -53,7 +53,7 @@ namespace TodoSeUsaNet7.Models
 
         // Relations
 
-        [ForeignKey("BillId")]
+/*        [ForeignKey("BillId")]*/
         public int BillId { get; set; }
         public virtual Bill? Bill { get; set; }
     }

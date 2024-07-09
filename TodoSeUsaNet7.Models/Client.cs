@@ -23,12 +23,12 @@ namespace TodoSeUsaNet7.Models
         [RegularExpression(@"^\d+$", ErrorMessage = "El número de teléfono solo puede contener números.")]
         public string? PhoneNumber { get; set; }
 
-        [MaxLength(64)]
+        [MaxLength(256)]
         [Display(Name = "Dirección")]
         public string? Address { get; set; }
 
         [Required]
-        [MaxLength(64)]
+        [MaxLength(256)]
         public string Email { get; set; }
 
         [Display(Name = "Activo")]

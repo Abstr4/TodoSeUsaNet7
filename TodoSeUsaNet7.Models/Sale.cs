@@ -6,6 +6,7 @@ namespace TodoSeUsaNet7.Models
     {
         [Key]
         public int SaleId { get; set; }
+
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -20,6 +21,7 @@ namespace TodoSeUsaNet7.Models
         public int Paid { get; set; }
         [Required]
         public int Owes { get; set; }
+
         [Required]
         public int TotalProducts { get; set; }
         public bool Closed { get; set; }
