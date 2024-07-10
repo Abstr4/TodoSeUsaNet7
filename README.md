@@ -39,6 +39,15 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
   <p align="center">
     <img src="TodoSeUsaNet7/Images/ProductsScreen.png" alt="Products View" width="100%" />
   </p>
+  
+- Each client, bill and product has a dropdown
+
+  <p align="center">
+    <img src="TodoSeUsaNet7/Images/ClientDropdown.png" alt="Clien Dropdown" width="45%" />
+    <img src="TodoSeUsaNet7/Images/BillDropdown.png" alt="Bill Dropdown" width="45%" />
+    <img src="TodoSeUsaNet7/Images/ProductDropdown.png" alt="Product Dropdown" width="45%" />
+  </p>
+  
 
 
 
