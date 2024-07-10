@@ -13,13 +13,23 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
 * [Features](#features)
 * [The Site](#the-site)
 
-# Features
+## Showcase
+
+![Register screen](images/RegisterScreen.png)
+
+![Login screen](images/LoginScreen.png)
+*Login and register screens*
+
+![Menu](images/Menu.png)
+*Simple and friendly menu*
+
+## Features
 
 - Accounts system (register, login and logout) implemented with .NET Identity.
 - CRUD operations over products, clients and bills.
 - Listing, searching and filtering the entities above.
 
-# Setup
+## Setup
 
 Follow these steps to set up the project on your local machine.
 
@@ -86,20 +96,8 @@ Follow these steps to set up the project on your local machine.
     
 6. **Restore, build and run from your IDE**
 
-  I use Visual Studio IDE, use whatever IDE you're using.
-  
-# The Site
+  I use Visual Studio IDE, works perfectly.
 
-## Accounts Page
-
-## Main Menu
-
-## Clients Page
-
-## Products Page
-
-## Bills Page
-
-
+## 
 
 
