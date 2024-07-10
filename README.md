@@ -47,13 +47,10 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
     <img src="TodoSeUsaNet7/Images/BillDropdown.png" alt="Bill Dropdown" width="45%" />
     <img src="TodoSeUsaNet7/Images/ProductDropdown.png" alt="Product Dropdown" width="45%" />
   </p>
-  
-
-
 
 ## Features
 
-- Accounts system (register, login and logout) implemented with .NET Identity.
+- An accounts system (register, login, and logout) implemented with .NET Identity to ensure data security.
 - CRUD operations over products, clients and bills.
 - Listing, searching and filtering the entities above.
 
@@ -127,5 +124,6 @@ Follow these steps to set up the project on your local machine.
   I use Visual Studio IDE, works perfectly.
 
 ## 
+
 
 
