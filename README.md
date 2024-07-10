@@ -27,8 +27,19 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
   <p align="center">
     <img src="TodoSeUsaNet7/Images/ClientsScreen.png" alt="Clients View" width="100%" />
   </p>
-
   
+- Bills page
+
+  <p align="center">
+    <img src="TodoSeUsaNet7/Images/BillsScreen.png" alt="Bills View" width="100%" />
+  </p>
+
+- Products page
+
+  <p align="center">
+    <img src="TodoSeUsaNet7/Images/ProductsScreen.png" alt="Products View" width="100%" />
+  </p>
+
 
 
 ## Features
