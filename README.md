@@ -18,38 +18,38 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
 
 ## Showcase
 
-- Login and Register pages
+### Login and Register pages
 <div> 
   <p align="center">
     <img src="TodoSeUsaNet7/Images/LoginAndRegisterScreen.png" alt="Login and Register View" width="75%" />
   </p>
 </div>
 
-- Menu
+### Menu
 
   <p align="center">
-    <img src="TodoSeUsaNet7/Images/Menu.png" alt="Menu View" width="75%" />
+    <img src="TodoSeUsaNet7/Images/Menu.png" alt="Menu View" width="100%" />
   </p>
 
-- Clients page
+### Clients page
 
   <p align="center">
     <img src="TodoSeUsaNet7/Images/ClientsScreen.png" alt="Clients View" width="100%" />
   </p>
   
-- Bills page
+### Bills page
 
   <p align="center">
     <img src="TodoSeUsaNet7/Images/BillsScreen.png" alt="Bills View" width="100%" />
   </p>
 
-- Products page
+### Products page
 
   <p align="center">
     <img src="TodoSeUsaNet7/Images/ProductsScreen.png" alt="Products View" width="100%" />
   </p>
   
-- Each client, bill and product has a dropdown menu to see detailed info.
+### Each client, bill and product has a dropdown menu to see detailed info.
 
   <p align="center">
     <img src="TodoSeUsaNet7/Images/ClientDropdown.png" alt="Clien Dropdown" width="45%" />
