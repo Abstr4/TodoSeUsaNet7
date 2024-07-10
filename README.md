@@ -15,12 +15,12 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
 
 ## Showcase
 
-![Register screen](images/RegisterScreen.png)
+![Register screen](TodoSeUsaNet7/Images/RegisterScreen.png)
 
-![Login screen](images/LoginScreen.png)
+![Login screen](TodoSeUsaNet7/Images/LoginScreen.png)
 *Login and register screens*
 
-![Menu](images/Menu.png)
+![Menu](TodoSeUsaNet7/Images/Menu.png)
 *Simple and friendly menu*
 
 ## Features
