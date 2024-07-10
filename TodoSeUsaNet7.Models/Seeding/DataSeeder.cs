@@ -52,6 +52,7 @@ namespace TodoSeUsaNet7.Models.Seeding
                     .RuleFor(p => p.Active, true)
                     .GenerateBetween(3, 5);
 
+                // reaconditioning cost and returned depends on reaconditioned and must return respectively to have a value
                 foreach (var product in billProducts)
                 {
                     if (product.Reaconditioned)
