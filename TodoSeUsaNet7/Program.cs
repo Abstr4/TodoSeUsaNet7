@@ -1,17 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Configuration;
 using TodoSeUsaNet7.Models.Data;
 var builder = WebApplication.CreateBuilder(args);
-// Retrieve the connection string from the environment variable
+
+// Get the connection string from the environment variable
 var connectionString = Environment.GetEnvironmentVariable("TODOSEUSANET7_CONNECTION_STRING");
-
-// Fall back to the value from appsettings.json if the environment variable is not set
-if (string.IsNullOrEmpty(connectionString))
-{
-    connectionString = builder.Configuration.GetConnectionString("TodoSeUsaNet7ContextConnection") ?? throw new InvalidOperationException("Connection string 'TodoSeUsaNet7ContextConnection' not found.");
-}
-
 
 builder.Services.AddDbContext<TodoSeUsaNet7Context>(options => options.UseSqlServer(connectionString));
 
@@ -48,7 +41,8 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<TodoSeUsaNet7Context>();
-    dbContext.Database.Migrate(); // Applies any pending migrations
+    // Applies any pending migrations
+    dbContext.Database.Migrate();
 }
 
 
