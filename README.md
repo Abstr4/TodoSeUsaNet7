@@ -4,7 +4,7 @@ Project Description
 -------------------
 Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)** ([LinkedIn](https://www.linkedin.com/in/matiasrojasmargaritini/)). This project is a simple inventory management system made with **C# .NET 7** for our family clothing store **TodoSeUsa**.
 
-  This **IMS** project will allow you to create, edit, and save clients, bills and products to a **SQL Server** database and keep them secure with the login system. If you find my project useful star :star: the repository :smile:. You can also [support me financially here]() or by leaving a comment in my **[LinkedIns post]()**. 
+  This **IMS** project will allow you to create, edit, and save clients, bills and products to a **SQL Server** database and keep them secure with the accounts system. If you find my project useful star :star: the repository :smile:. You can also [support me financially here]() or by leaving a comment in my **[LinkedIn post]()**. 
 
 ## Table of contents
 * [Introduction](#project-description)
@@ -123,7 +123,17 @@ Follow these steps to set up the project on your local machine.
 
   I use Visual Studio IDE, works perfectly.
 
-## 
+## Branches
+
+### Demo Environment 
+
+The project has a demo version where you can watch it working without creating any entity, I've used **[Bogus](https://github.com/bchavez/Bogus)** to fake data, to access the demo, switch to the `feature/demo-environment` branch:
+
+```sh
+git checkout feature/demo-environment
+
+
+
 
 
 
