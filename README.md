@@ -18,7 +18,7 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
 - Login and Register pages
 <div> 
   <p align="center">
-    <img src="TodoSeUsaNet7/Images/LoginAndRegisterScreen.png" alt="Login and Register View" width="50%" />
+    <img src="TodoSeUsaNet7/Images/LoginAndRegisterScreen.png" alt="Login and Register View" width="75%" />
   </p>
 </div>
 
