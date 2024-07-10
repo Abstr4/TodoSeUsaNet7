@@ -132,7 +132,19 @@ The project includes a demo version where you can observe its functionality with
 ```sh
 git checkout feature/demo-environment
 ```
+## Contribution
 
+Your contributions are always welcome and appreciated:
+
+- **Report a Bug or request a feature:**
+  If you think you have encountered a bug or want to request a feature, feel free to do it directly to me via [Twitter](https://x.com/Abstr4_) or [LinkedIn](https://www.linkedin.com/in/matiasrojasmargaritini).
+
+- **Contact:**
+  You can reach out to me via [contact.abstr4@gmail.com](mailto:contact.abstr4@gmail.com), [Twitter](https://x.com/Abstr4_) or [LinkedIn](https://www.linkedin.com/in/matiasrojasmargaritini).
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
 
 
 
