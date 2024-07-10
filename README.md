@@ -74,13 +74,15 @@ Follow these steps to set up the project on your local machine.
 - [Git](https://git-scm.com/)
 - [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 
+Ensure you have SQL Server installed and configured on your machine before proceeding with the setup.
+
 ### Installation
 
 1. **Clone the repository:**
 
     ```sh
-    git clone https://github.com/Abstr4/TodoSeUsaNet7
-    cd TodoSeUsaNet7
+    git clone https://github.com/yourusername/yourrepository.git
+    cd yourrepository
     ```
 
 2. **Set up environment variables:**
@@ -90,7 +92,7 @@ Follow these steps to set up the project on your local machine.
     - On **Windows**:
 
       - (change the database name to whatever you like)
-      
+
       Open Command Prompt or PowerShell and run:
 
       ```sh
@@ -113,27 +115,39 @@ Follow these steps to set up the project on your local machine.
       source ~/.bashrc  # or ~/.zshrc or ~/.bash_profile
       ```
 
-3. **Restore dependencies:**
+3. **Modify `Program.cs`:**
+
+    Open the `Program.cs` file and update the line for the connection string to match the name you used for the environment variable:
+
+    ```csharp
+    var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
+    ```
+
+4. **Restore dependencies:**
 
     ```sh
     dotnet restore
     ```
 
-4. **Build the project:**
+5. **Build the project:**
 
     ```sh
     dotnet build
     ```
 
-5. **Run the project:**
+6. **Run the project:**
 
     ```sh
     dotnet run
     ```
-    
-6. **Restore, build and run from your IDE**
 
-  I use Visual Studio IDE, works perfectly.
+7. **Restore, build, and run from your IDE:**
+
+    I use Visual Studio IDE, and it works perfectly.
+
+### Additional Notes
+
+- If you use a different environment variable name, make sure to update it in both the environment variable setup step and the `Program.cs` file.
 
 ## Branches
 
