@@ -22,6 +22,13 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
   </p>
 </div>
 
+- Clients page
+
+  <p align="center">
+    <img src="TodoSeUsaNet7/Images/ClientsScreen.png" alt="Clients View" width="75%" />
+  </p>
+
+  
 
 
 ## Features
