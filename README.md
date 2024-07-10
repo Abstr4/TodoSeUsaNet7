@@ -15,11 +15,13 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
 
 ## Showcase
 
-<p align="center">
-  Login and register pages
-  <img src="TodoSeUsaNet7/Images/RegisterScreen.png" alt="Register View" width="45%" />
-  <img src="TodoSeUsaNet7/Images/LoginScreen.png" alt="Login View" width="45%" />
-</p>
+<div>
+  Login and Register pages
+  <p align="center">
+    <img src="TodoSeUsaNet7/Images/RegisterScreen.png" alt="Register View" width="45%" />
+    <img src="TodoSeUsaNet7/Images/LoginScreen.png" alt="Login View" width="45%" />
+  </p>
+</div>
 
 
 ## Features
