@@ -19,7 +19,7 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
 - CRUD operations over products, clients and bills.
 - Listing, searching and filtering the entities above.
 
-- ## Setup
+# Setup
 
 Follow these steps to set up the project on your local machine.
 
