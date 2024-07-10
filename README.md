@@ -40,7 +40,7 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
     <img src="TodoSeUsaNet7/Images/ProductsScreen.png" alt="Products View" width="100%" />
   </p>
   
-- Each client, bill and product has a dropdown
+- Each client, bill and product has a dropdown menu to see detailed info.
 
   <p align="center">
     <img src="TodoSeUsaNet7/Images/ClientDropdown.png" alt="Clien Dropdown" width="45%" />
