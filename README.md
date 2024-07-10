@@ -127,10 +127,11 @@ Follow these steps to set up the project on your local machine.
 
 ### Demo Environment 
 
-The project has a demo version where you can watch it working without creating any entity, I've used **[Bogus](https://github.com/bchavez/Bogus)** to fake data, to access the demo, switch to the `feature/demo-environment` branch:
+The project includes a demo version where you can observe its functionality without creating any real entities. I've utilized **[Bogus](https://github.com/bchavez/Bogus)** to generate fake data. To access the demo, switch to the `feature/demo-environment` branch.
 
 ```sh
 git checkout feature/demo-environment
+```
 
 
 
