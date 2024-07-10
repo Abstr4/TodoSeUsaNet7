@@ -8,10 +8,12 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
 
 ## Table of contents
 * [Introduction](#project-description)
+* [Showcase](#showcase)
 * [Features](#features)
 * [Setup](#setup)
 * [Features](#features)
-* [The Site](#the-site)
+* [Branches](#branches)
+* [License](#license)
 
 ## Showcase
 
