@@ -8,7 +8,7 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
 
 ## Table of contents
 * [Introduction](#project-description)
-* [Technologies](#technologies)
+* [Features](#features)
 * [Setup](#setup)
 * [Features](#features)
 * [The Site](#the-site)
