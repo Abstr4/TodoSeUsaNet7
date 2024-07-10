@@ -71,6 +71,8 @@ Follow these steps to set up the project on your local machine.
 ### Prerequisites
 
 - [.NET 7 SDK](https://dotnet.microsoft.com/download/dotnet/7.0)
+- [Git](https://git-scm.com/)
+- [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 
 ### Installation
 
