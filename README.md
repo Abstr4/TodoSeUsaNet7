@@ -84,8 +84,10 @@ Follow these steps to set up the project on your local machine.
     dotnet run
     ```
     
-6. Restore, build and run from your IDE (I use Visual Studio IDE) 
+6. **Restore, build and run from your IDE**
 
+  I use Visual Studio IDE, use whatever IDE you're using.
+  
 # The Site
 
 ## Accounts Page
