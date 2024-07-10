@@ -7,7 +7,7 @@ using TodoSeUsaNet7.Models.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
-// Retrieve the connection string from the environment variable
+// Get the connection string from the environment variable
 var connectionString = Environment.GetEnvironmentVariable("TODOSEUSANET7_CONNECTION_STRING_DEMO");
 /*                       ?? Environment.GetEnvironmentVariable("TODOSEUSANET7_CONNECTION_STRING");
 */
