@@ -53,6 +53,7 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
 - An accounts system (register, login, and logout) implemented with .NET Identity to ensure data security.
 - CRUD operations over products, clients and bills.
 - Listing, searching and filtering the entities above.
+- **[Demo version](#demo-environment)**
 
 ## Setup
 
