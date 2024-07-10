@@ -11,8 +11,8 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
 * [Showcase](#showcase)
 * [Features](#features)
 * [Setup](#setup)
-* [Features](#features)
 * [Branches](#branches)
+* [Database Triggers](#database-triggers)
 * [Contribution](#contribution)
 * [License](#license)
 
@@ -236,8 +236,9 @@ BEGIN
     UPDATE Client SET TotalBills = (SELECT count(BillId) FROM Bill WHERE ClientId = @ClientId)
     WHERE ClientId = @ClientId;
 END
-
+```
 Please make sure to review the migration file for details on the triggers and how they operate within the database.
+
 ## Contribution
 
 Your contributions are always welcome and appreciated:
