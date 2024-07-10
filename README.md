@@ -9,22 +9,82 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
 ## Table of contents
 * [Introduction](#project-description)
 * [Technologies](#technologies)
+* [Setup](#setup)
 * [Features](#features)
 * [The Site](#the-site)
-* [Setup](#setup)
-
-# Technologies
-
-- ASP .NET CORE MVC
-- .NET 7 & C# 11
-- Microsoft SQL Server 2019 (RTM) - 15.0.2000.5 (X64)
-- Bootstrap v5.1.0
 
 # Features
 
 - Accounts system (register, login and logout) implemented with .NET Identity.
 - CRUD operations over products, clients and bills.
 - Listing, searching and filtering the entities above.
+
+- ## Setup
+
+Follow these steps to set up the project on your local machine.
+
+### Prerequisites
+
+- [.NET 7 SDK](https://dotnet.microsoft.com/download/dotnet/7.0)
+
+### Installation
+
+1. **Clone the repository:**
+
+    ```sh
+    git clone https://github.com/Abstr4/TodoSeUsaNet7
+    cd TodoSeUsaNet7
+    ```
+
+2. **Set up environment variables:**
+
+    You need to set up an environment variable for your connection string.
+
+    - On **Windows**:
+
+      - (change the database name to whatever you like)
+      
+      Open Command Prompt or PowerShell and run:
+
+      ```sh
+      setx ConnectionStrings__DefaultConnection "Server=localhost;Database=TodoSeUsaNet7;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true"
+      ``` 
+
+      Or add it to your system environment variables through the Control Panel.
+
+    - On **Linux/macOS**:
+
+      Open your terminal and add the following line to your `.bashrc`, `.zshrc`, or `.bash_profile` file:
+
+      ```sh
+      export ConnectionStrings__DefaultConnection="Server=localhost;Database=TodoSeUsaNet7;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true"
+      ```
+
+      Then, run:
+
+      ```sh
+      source ~/.bashrc  # or ~/.zshrc or ~/.bash_profile
+      ```
+
+3. **Restore dependencies:**
+
+    ```sh
+    dotnet restore
+    ```
+
+4. **Build the project:**
+
+    ```sh
+    dotnet build
+    ```
+
+5. **Run the project:**
+
+    ```sh
+    dotnet run
+    ```
+    
+6. Restore, build and run from your IDE (I use Visual Studio IDE) 
 
 # The Site
 
@@ -39,6 +99,5 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
 ## Bills Page
 
 
-# Setup
 
 
