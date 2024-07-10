@@ -144,6 +144,86 @@ The project includes a demo version where you can observe its functionality with
 ```sh
 git checkout feature/demo-environment
 ```
+## Database Triggers
+
+This project includes database triggers defined within a migration file to automate certain operations and ensure data integrity.
+
+### Trigger Details
+
+- **Trigger: `UpdateBillOnProductChange`**
+  - **Event:** AFTER INSERT, UPDATE on `Product` table
+  - **Function:** Updates the `Bill` table when changes occur in the `Product` table. Specifically, it updates the following fields in the `Bill` table:
+    - `TotalProducts`
+    - `ProductsSold`
+    - `TotalAmountPerProducts`
+    - `TotalAmountSold`
+
+- **Trigger: `UpdateClientOnBillChange`**
+  - **Event:** AFTER INSERT, UPDATE on `Bill` table
+  - **Function:** Updates the `Client` table when changes occur in the `Bill` table. Specifically, it updates the following fields in the `Client` table:
+    - `TotalProducts`
+    - `TotalAmountPerProducts`
+    - `ProductsSold`
+    - `TotalAmountSold`
+    - `TotalBills`
+
+### Trigger Code
+
+You can find the triggers defined inside the following migration file:
+- [`TodoSeUsaNet7.Models/Migrations/20240709192011_ProductsAndBillsTrigger`](TodoSeUsaNet7.Models/Migrations/20240709192011_ProductsAndBillsTrigger)
+
+Here is a snippet of the trigger definitions:
+
+```sql
+-- UpdateBillOnProductChange Trigger
+CREATE TRIGGER UpdateBillOnProductChange
+ON Product
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    DECLARE @BillId INT = (SELECT BillId FROM inserted);
+    UPDATE Bill 
+    SET TotalProducts = (SELECT COUNT(ProductId) FROM Product WHERE BillId = @BillId)
+    WHERE BillId = @BillId;
+
+    UPDATE Bill 
+    SET ProductsSold = (SELECT COUNT(ProductId) FROM Product WHERE BillId = @BillId AND Sold = 1)
+    WHERE BillId = @BillId;
+
+    UPDATE Bill 
+    SET TotalAmountPerProducts = (SELECT ISNULL(SUM(Price), 0) FROM Product WHERE BillId = @BillId)
+    WHERE BillId = @BillId;
+
+    UPDATE Bill 
+    SET TotalAmountSold = (SELECT ISNULL(SUM(Price), 0) FROM Product WHERE BillId = @BillId AND Sold = 1)
+    WHERE BillId = @BillId;
+END
+
+-- UpdateClientOnBillChange Trigger
+CREATE TRIGGER UpdateClientOnBillChange
+ON Bill
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    DECLARE @ClientId int = (SELECT ClientId FROM inserted)
+
+    UPDATE Client SET TotalProducts = (SELECT ISNULL(sum(TotalProducts), 0) FROM Bill WHERE ClientId = @ClientId)
+    WHERE ClientId = @ClientId;
+
+    UPDATE Client SET TotalAmountPerProducts = (SELECT ISNULL(sum(TotalAmountPerProducts), 0) FROM Bill WHERE ClientId = @ClientId)
+    WHERE ClientId = @ClientId;
+
+    UPDATE Client SET ProductsSold = (SELECT ISNULL(sum(ProductsSold), 0) FROM Bill WHERE ClientId = @ClientId)
+    WHERE ClientId = @ClientId;
+
+    UPDATE Client SET TotalAmountSold = (SELECT ISNULL(sum(TotalAmountSold), 0) FROM Bill WHERE ClientId = @ClientId)
+    WHERE ClientId = @ClientId;
+
+    UPDATE Client SET TotalBills = (SELECT count(BillId) FROM Bill WHERE ClientId = @ClientId)
+    WHERE ClientId = @ClientId;
+END
+
+Please make sure to review the migration file for details on the triggers and how they operate within the database.
 ## Contribution
 
 Your contributions are always welcome and appreciated:
