@@ -36,6 +36,8 @@ namespace TodoSeUsaNet7.Models.Seeding
                 client.Bills = new List<Bill>() { bill };
             }
 
+            await context.Bills.AddRangeAsync(bills);
+
             var products = new List<Product>();
 
             foreach (var bill in bills)
@@ -70,7 +72,7 @@ namespace TodoSeUsaNet7.Models.Seeding
                 products.AddRange(billProducts);
             }
 
-            await context.Bills.AddRangeAsync(bills);
+            // await context.Bills.AddRangeAsync(bills);
 
             await context.Products.AddRangeAsync(products);
 

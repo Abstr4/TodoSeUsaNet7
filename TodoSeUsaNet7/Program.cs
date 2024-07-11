@@ -1,16 +1,15 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TodoSeUsaNet7.Models.Data;
-using TodoSeUsaNet7.Models.Seeding;
 using TodoSeUsaNet7.Models.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 // Get the connection string from the environment variable
 var connectionString = Environment.GetEnvironmentVariable("TODOSEUSANET7_CONNECTION_STRING_DEMO");
-/*                       ?? Environment.GetEnvironmentVariable("TODOSEUSANET7_CONNECTION_STRING");
-*/
 
-builder.Services.AddDbContext<TodoSeUsaNet7Context>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<TodoSeUsaNet7Context>(options => options.UseSqlServer(connectionString).LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information));
+
+builder.Services.AddHttpClient();
 
 // DatabaseResetService Service
 builder.Services.AddScoped<DatabaseResetService>();
@@ -53,11 +52,6 @@ using (var scope = app.Services.CreateScope())
 
     // Applies any pending migrations
     dbContext.Database.Migrate(); 
-
-    // Seed data
-    await DataSeeder.SeedDataAsync(dbContext);
-    // Applies any pending migrations
-    dbContext.Database.Migrate();
 
 }
 
