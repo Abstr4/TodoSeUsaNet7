@@ -153,15 +153,7 @@ Ensure you have SQL Server installed and configured on your machine before proce
 
 ### Demo Environment 
 
-The project includes a demo version where you can observe its functionality without creating any real entities. I've utilized **[Bogus](https://github.com/bchavez/Bogus)** to generate fake data, so you should install the NuGet package first to try it.
-
-Navigate to the TodoSeUsaNet7.Models project directory and run the command:
-
-```sh
-dotnet add package Bogus
-```
-
- To access the demo, switch to the `feature/demo-environment` branch.
+The project includes a demo version where you can observe its functionality without creating any real entities. I've utilized **[Bogus](https://github.com/bchavez/Bogus)** to generate fake data. To access the demo, switch to the `feature/demo-environment` branch.
  
 ```sh
 git checkout feature/demo-environment
