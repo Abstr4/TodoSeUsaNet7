@@ -81,8 +81,8 @@ Ensure you have SQL Server installed and configured on your machine before proce
 1. **Clone the repository:**
 
     ```sh
-    git clone https://github.com/yourusername/yourrepository.git
-    cd yourrepository
+    git clone https://github.com/Abstr4/TodoSeUsaNet7.git
+    cd TodoSeUsaNet7
     ```
 
 2. **Set up environment variables:**
