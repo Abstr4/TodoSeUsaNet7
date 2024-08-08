@@ -4,7 +4,7 @@ Project Description
 -------------------
 Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)** ([LinkedIn](https://www.linkedin.com/in/matiasrojasmargaritini/)). This project is a simple inventory management system made with **C# .NET 7** for our family clothing store **TodoSeUsa**.
 
-  This **IMS** project will allow you to create, edit, and save clients, bills and products to a **SQL Server** database and keep them secure with the accounts system. If you find my project useful star :star: the repository :smile:. You can also [support me financially here]() or by leaving a comment in my **[LinkedIn post](https://www.linkedin.com/posts/matiasrojasmargaritini_aspnetcore-dotnet7-net-activity-7216841698897780736-mMkb?utm_source=share&utm_medium=member_desktop)**. 
+  This **IMS** project will allow you to create, edit, and save clients, invoices and products to a **SQL Server** database and keep them secure with the accounts system. If you find my project useful star :star: the repository :smile:. You can also [support me financially here]() or by leaving a comment in my **[LinkedIn post](https://www.linkedin.com/posts/matiasrojasmargaritini_aspnetcore-dotnet7-net-activity-7216841698897780736-mMkb?utm_source=share&utm_medium=member_desktop)**. 
 
 ## Table of contents
 * [Introduction](#project-description)
@@ -37,7 +37,7 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
     <img src="TodoSeUsaNet7/Images/ClientsScreen.png" alt="Clients View" width="100%" />
   </p>
   
-### Bills page
+### Invoices page
 
   <p align="center">
     <img src="TodoSeUsaNet7/Images/BillsScreen.png" alt="Bills View" width="100%" />
@@ -49,7 +49,7 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
     <img src="TodoSeUsaNet7/Images/ProductsScreen.png" alt="Products View" width="100%" />
   </p>
   
-### Each client, bill and product has a dropdown menu to view detailed info.
+### Each client, invoice and product has a dropdown menu to view detailed info.
 
   <p align="center">
     <img src="TodoSeUsaNet7/Images/ClientDropdown.png" alt="Clien Dropdown" width="45%" />
@@ -60,7 +60,7 @@ Hello I'm **[Matias Rojas](https://www.linkedin.com/in/matiasrojasmargaritini/)*
 ## Features
 
 - An accounts system (register, login, and logout) implemented with .NET Identity to ensure data security.
-- CRUD operations over products, clients and bills.
+- CRUD operations over products, clients and invoices.
 - Listing, searching and filtering the entities above.
 - **[Demo version](#demo-environment)**
 
