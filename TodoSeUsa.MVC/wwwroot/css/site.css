@@ -1,0 +1,108 @@
+html, body, main {
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+}
+
+main {
+    position: relative;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+nav {
+    top: 0;
+    z-index: 5000;
+}
+
+.container {
+    max-width: 1024px;
+    padding-top: 84px;
+}
+
+p {
+    margin-bottom: 0px;
+}
+
+
+/*.nav-item:not(:last-child) {
+    border-bottom: 1px solid #dee2e6 !important;
+}*/
+
+/*.nav-item:hover {
+    background-color: #212529;
+    color: #F9F6EE !important;
+}
+
+.navbar-light:hover, .navbar-nav:hover, .nav-link:hover {
+    color: #F9F6EE !important;
+}
+
+.nav-link {
+    text-align:center;
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-dark-rgb),var(--bs-text-opacity)) !important;
+
+}*/
+
+
+/*tab navigation*/
+.login-logout-card .card-header {
+    padding: 0px 0px 12px 0px;
+}
+
+.login-logout-card ul.nav-tabs {
+    margin: 0px 0px -12px 0px;
+}
+
+.login-logout-card li.nav-item {
+    width: 50%;
+}
+
+.login-logout-card a.nav-link {
+    font-size: 1rem;
+    color: #495057;
+    text-align: center;
+    padding: 1rem;
+}
+
+.login-logout-card .card-body {
+    padding: 10px 20px;
+}
+
+.footer-container {
+    margin-top: 128px;
+    max-width: 960px;
+    margin-left:auto;
+    margin-right: auto;
+}
+
+#github-icon:hover {
+    color: black !important;
+    transform: scale(1.2);
+    transition-duration: 0.3s;  
+}
+
+#linkedin-icon:hover {
+    color: dodgerblue !important;
+    transform: scale(1.2);
+    transition-duration: 0.3s;
+}
+
+.footer-text:hover {
+    transform: scale(1.2);
+    transition-duration: 0.3s;
+}
+
+.menu-bar-text:hover 
+{
+    transform: scale(1.1) !important;
+}
